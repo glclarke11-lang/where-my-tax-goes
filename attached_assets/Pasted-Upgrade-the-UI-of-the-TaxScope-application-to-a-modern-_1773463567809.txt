@@ -1,0 +1,228 @@
+Upgrade the UI of the TaxScope application to a modern **data dashboard layout** similar to Stripe, Linear, or Vercel dashboards.
+
+Do not change the underlying functionality. Only improve layout, navigation, and visual hierarchy.
+
+Use React + TailwindCSS.
+
+---
+
+GLOBAL LAYOUT
+
+Replace the current top-heavy layout with a **dashboard layout**.
+
+Structure the app like this:
+
+Left sidebar navigation
+Main content area
+Top header inside the content panel
+
+Layout structure:
+
+Sidebar (fixed width 240px)
+Main dashboard area (fluid)
+
+---
+
+SIDEBAR NAVIGATION
+
+Move the navigation items from the top bar into a **left sidebar**.
+
+Sidebar items:
+
+Calculator
+Budget Breakdown
+Lifetime Taxes
+Budget Explorer
+Budget Simulator
+Public Sentiment
+
+Each item should include:
+
+• an icon
+• label text
+• hover highlight
+• active page indicator
+
+Use a subtle background highlight for the active page.
+
+Example styling:
+
+Dark background
+Soft hover glow
+Rounded selection indicator
+
+---
+
+TOP HEADER
+
+Inside the main content area create a header bar that contains:
+
+Page title
+Short description
+User tax input summary (if available)
+
+Example:
+
+Page Title: Budget Explorer
+Description: Explore how government spending is allocated.
+
+On the right side include:
+
+Tax amount indicator
+
+Example:
+
+Your taxes: $18,420
+
+---
+
+HERO SECTION IMPROVEMENT
+
+Reduce the empty vertical space above the headline.
+
+Increase headline size to improve visual impact.
+
+New headline style:
+
+Font size: 72px
+Font weight: bold
+Gradient text from cyan to purple
+
+Add a subtle radial gradient glow behind the hero section.
+
+Example background:
+
+Deep blue → purple gradient blur.
+
+---
+
+FEATURE CARDS
+
+Improve the feature grid.
+
+Card style:
+
+Rounded corners
+Soft border
+Glassmorphism background
+
+Hover effect:
+
+Lift card slightly
+Increase glow
+Animate icon slightly
+
+Example hover:
+
+transform: translateY(-6px)
+transition: 200ms ease
+
+Cards should feel interactive and clickable.
+
+---
+
+DASHBOARD CARDS
+
+Add summary cards below the hero section.
+
+Example cards:
+
+Total Taxes Entered
+Largest Spending Category
+Projected Lifetime Taxes
+
+Each card should show:
+
+Large number
+Label
+Small icon
+
+Example:
+
+$18,420
+Your Annual Tax Contribution
+
+---
+
+VISUALIZATION AREA
+
+Reserve a large section below the cards for charts and maps.
+
+Charts should use:
+
+Chart.js or Recharts.
+
+Charts should animate on load.
+
+Include:
+
+Spending pie chart
+Spending bar chart
+Heatmap visualization (if available)
+
+---
+
+TYPOGRAPHY
+
+Improve text hierarchy.
+
+Headline: 72px
+Section headers: 28px
+Card titles: 18px
+Body text: 15px
+
+Use clear spacing between sections.
+
+---
+
+COLOR SYSTEM
+
+Primary gradient:
+
+Cyan → Purple
+
+Secondary colors:
+
+Healthcare: green
+Education: blue
+Defence: red
+Infrastructure: orange
+Welfare: purple
+
+Use consistent colors across charts and UI elements.
+
+---
+
+MICRO ANIMATIONS
+
+Add subtle animations across the UI.
+
+Examples:
+
+Card hover lift
+Chart loading animation
+Sidebar hover glow
+
+Use smooth transitions (150–250ms).
+
+---
+
+RESPONSIVE DESIGN
+
+Ensure layout adapts properly.
+
+Desktop:
+
+Sidebar visible.
+
+Tablet / mobile:
+
+Sidebar collapses into hamburger menu.
+
+---
+
+GOAL
+
+Transform the application from a simple landing page into a **modern civic data dashboard** that feels like a professional analytics platform.
+
+The UI should feel polished, structured, and visually engaging while keeping the existing functionality intact.

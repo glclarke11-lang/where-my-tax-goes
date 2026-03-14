@@ -3,7 +3,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { TaxProvider } from "@/hooks/use-tax-store";
-import { Navbar } from "@/components/Navbar";
+import { Sidebar } from "@/components/Sidebar";
+import { TopHeader } from "@/components/TopHeader";
+import { useState } from "react";
 
 // Pages
 import Home from "@/pages/Home";
@@ -43,18 +45,32 @@ function Router() {
   );
 }
 
+function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  return (
+    <div className="flex h-screen overflow-hidden">
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div className="flex-1 flex flex-col min-w-0 min-h-0">
+        <TopHeader onMenuClick={() => setSidebarOpen(true)} />
+        <main className="flex-1 overflow-y-auto">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TaxProvider>
         <TooltipProvider>
-          {/* We enforce dark mode on the wrapper for the unified aesthetic */}
-          <div className="dark min-h-screen bg-background text-foreground font-sans selection:bg-primary/30 relative flex flex-col">
+          <div className="dark min-h-screen bg-background text-foreground font-sans selection:bg-primary/30">
             <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-              <Navbar />
-              <main className="flex-1">
+              <DashboardLayout>
                 <Router />
-              </main>
+              </DashboardLayout>
             </WouterRouter>
           </div>
           <Toaster />

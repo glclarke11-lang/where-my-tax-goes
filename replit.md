@@ -98,10 +98,14 @@ Express 5 API server. Routes live in `src/routes/` and use `@workspace/api-zod` 
 React + Vite frontend for "Where My Tax Goes".
 
 - Entry: `src/main.tsx`
-- Pages: `src/pages/` — Home, Calculator, Breakdown, Simulator, Share
-- Components: `src/components/` — Navbar, TaxDoughnut, CategoryCard, PageTransition
+- Pages: `src/pages/` — Home, Calculator, Breakdown, Simulator, Share, Lifetime, Explorer, Sentiment, FollowTheMoney
+- **Layout**: Sidebar dashboard (240px fixed desktop, slide-in mobile) + TopHeader (56px). No top Navbar.
+  - `src/components/Sidebar.tsx` — nav sidebar with active-route highlight (uses wouter useLocation)
+  - `src/components/TopHeader.tsx` — per-route title/description + tax chip or Calculate CTA
+  - `src/components/PageTransition.tsx` — framer-motion fade+slide, `pt-8 pb-12 px-4 max-w-7xl mx-auto`
+  - `DashboardLayout` (inline in App.tsx) — wraps Sidebar + TopHeader + main scroll container; must live inside WouterRouter
 - Hooks: `src/hooks/use-tax-store.tsx` — global state for tax results
-- Dependencies: chart.js, react-chartjs-2, framer-motion, html2canvas, tailwind-merge, clsx
+- Dependencies: chart.js, react-chartjs-2, framer-motion, html2canvas, tailwind-merge, clsx, react-leaflet, leaflet
 
 ### `lib/db` (`@workspace/db`)
 
