@@ -1,0 +1,138 @@
+Upgrade the budget simulator to support **macro and micro category budgeting** so that the total budget remains mathematically accurate.
+
+Users should be able to adjust spending at the **micro category level**, and the **macro category percentages should update automatically**.
+
+The macro category value must always equal the **sum of its micro categories**.
+
+---
+
+BUDGET STRUCTURE
+
+Use a nested JSON structure.
+
+Example:
+
+{
+"healthcare": {
+"label": "Healthcare",
+"breakdown": {
+"hospitals": 0.38,
+"medicare": 0.22,
+"pharmaceuticals": 0.16,
+"aged_care": 0.14,
+"mental_health": 0.05,
+"public_health": 0.03,
+"indigenous_health": 0.02
+}
+}
+}
+
+The macro category percentage should be calculated dynamically based on the micro category values.
+
+---
+
+USER INTERFACE BEHAVIOR
+
+Main screen:
+
+Display macro spending categories as a pie chart.
+
+Example categories:
+
+Healthcare
+Education
+Defence
+Infrastructure
+Welfare
+Government Administration
+Other
+
+Each macro category should show its total percentage.
+
+---
+
+INTERACTION
+
+When a user clicks a macro category (for example Healthcare), open a detailed panel showing all micro categories.
+
+Each micro category must have:
+
+• a percentage slider
+• dollar value contribution
+• tooltip description
+
+Example micro categories for Healthcare:
+
+Hospitals
+Medicare
+Pharmaceuticals
+Aged Care
+Mental Health
+Public Health
+Indigenous Health
+
+---
+
+CALCULATION LOGIC
+
+When a user adjusts a micro category slider:
+
+1. Recalculate the macro category percentage as the sum of its micro categories.
+2. Update the main budget pie chart immediately.
+3. Update the user's personal tax contribution for each micro category.
+
+Example:
+
+User increases Mental Health spending.
+
+Mental Health: 5% → 10%
+
+Healthcare macro percentage increases accordingly.
+
+---
+
+BUDGET CONSISTENCY
+
+The total national budget must always equal 100%.
+
+If micro adjustments cause the total to exceed 100%:
+
+Display a warning and show the resulting deficit or required tax increase.
+
+Example:
+
+"Your budget increases spending by $48B and would require a 2.3% tax increase."
+
+---
+
+VISUALIZATION
+
+Include:
+
+• animated pie chart for macro categories
+• bar charts for micro breakdown
+• smooth transitions when drilling down
+
+Add breadcrumb navigation:
+
+Budget → Healthcare → Hospitals
+
+Allow users to return to the main budget view easily.
+
+---
+
+PERSONAL TAX IMPACT
+
+For every micro category display the user's contribution.
+
+Example:
+
+"You contribute $1,152 toward pharmaceuticals."
+
+All numbers must update dynamically when sliders change.
+
+---
+
+GOAL
+
+Create a highly interactive budget simulator where users can explore and adjust spending at both macro and micro levels while maintaining mathematically accurate totals.
