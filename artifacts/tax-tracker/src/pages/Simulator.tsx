@@ -15,113 +15,16 @@ import { useTaxStore } from "@/hooks/use-tax-store";
 import { useToast } from "@/hooks/use-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-
-interface MicroCategory {
-  key: string;
-  label: string;
-  percentage: number;
-  description: string;
-}
-
-interface MacroCategory {
-  key: string;
-  label: string;
-  color: string;
-  micros: MicroCategory[];
-}
-
-const INITIAL_BUDGET: MacroCategory[] = [
-  {
-    key: "healthcare",
-    label: "Healthcare",
-    color: "#10B981",
-    micros: [
-      { key: "medicare", label: "Medicare & Hospitals", percentage: 0.1980, description: "Medicare covers health care for seniors 65+ and hospital services nationwide." },
-      { key: "medicaid", label: "Medicaid & CHIP", percentage: 0.1080, description: "Health coverage for low-income individuals, families, and children." },
-      { key: "public_health", label: "Public Health & Prevention", percentage: 0.0288, description: "CDC, NIH, disease prevention, and public health agencies." },
-      { key: "mental_health", label: "Mental Health", percentage: 0.0144, description: "SAMHSA grants and behavioral health services across the country." },
-      { key: "pharma", label: "Pharmaceuticals & Research", percentage: 0.0108, description: "FDA regulation, biomedical research, and drug development funding." },
-    ],
-  },
-  {
-    key: "welfare",
-    label: "Welfare",
-    color: "#8B5CF6",
-    micros: [
-      { key: "social_security", label: "Social Security", percentage: 0.1080, description: "Retirement and disability income for eligible American workers." },
-      { key: "food_assistance", label: "Food Assistance (SNAP)", percentage: 0.0270, description: "Nutrition support for low-income families through the SNAP program." },
-      { key: "housing", label: "Housing & Rental Assistance", percentage: 0.0216, description: "HUD programs, Section 8 vouchers, and public housing." },
-      { key: "unemployment", label: "Unemployment Insurance", percentage: 0.0144, description: "Federal-state unemployment compensation for displaced workers." },
-      { key: "disability", label: "Disability Benefits", percentage: 0.0090, description: "SSI and other disability income support programs." },
-    ],
-  },
-  {
-    key: "education",
-    label: "Education",
-    color: "#3B82F6",
-    micros: [
-      { key: "k12", label: "K-12 Schools", percentage: 0.0600, description: "Title I grants, special education, and school improvement programs." },
-      { key: "higher_ed", label: "Higher Education", percentage: 0.0375, description: "Pell Grants, student loans, and university research funding." },
-      { key: "student_aid", label: "Student Financial Aid", percentage: 0.0300, description: "Federal direct loans and work-study programs for students." },
-      { key: "vocational", label: "Vocational Training", percentage: 0.0150, description: "Job training programs and workforce development initiatives." },
-      { key: "early_childhood", label: "Early Childhood", percentage: 0.0075, description: "Head Start and childcare assistance programs." },
-    ],
-  },
-  {
-    key: "defence",
-    label: "Defence",
-    color: "#EF4444",
-    micros: [
-      { key: "military_ops", label: "Military Operations", percentage: 0.0450, description: "Army, Navy, Air Force, Marine Corps, and Space Force operations." },
-      { key: "veterans", label: "Veterans Affairs", percentage: 0.0250, description: "VA healthcare, housing, and benefits for veterans." },
-      { key: "intelligence", label: "Intelligence & Security", percentage: 0.0150, description: "CIA, NSA, DHS, and homeland security programs." },
-      { key: "rd_defence", label: "R&D & Procurement", percentage: 0.0100, description: "Weapons systems, technology development, and military equipment." },
-      { key: "intl_ops", label: "International Operations", percentage: 0.0050, description: "Overseas contingency, peacekeeping, and NATO contributions." },
-    ],
-  },
-  {
-    key: "infrastructure",
-    label: "Infrastructure",
-    color: "#F97316",
-    micros: [
-      { key: "roads", label: "Roads & Highways", percentage: 0.0315, description: "Federal Highway Administration and surface transportation." },
-      { key: "transit", label: "Public Transit", percentage: 0.0180, description: "FTA grants for buses, subways, and commuter rail." },
-      { key: "energy", label: "Energy Grid & Clean Energy", percentage: 0.0180, description: "Grid modernization, renewable energy, and DOE programs." },
-      { key: "broadband", label: "Broadband & Technology", percentage: 0.0135, description: "Rural broadband expansion and digital infrastructure." },
-      { key: "water", label: "Water & Environmental", percentage: 0.0090, description: "EPA water infrastructure and clean water grants." },
-    ],
-  },
-  {
-    key: "admin",
-    label: "Government Admin",
-    color: "#6B7280",
-    micros: [
-      { key: "justice", label: "Justice & Courts", percentage: 0.0210, description: "DOJ, federal courts, FBI, and law enforcement." },
-      { key: "treasury", label: "Treasury & IRS", percentage: 0.0150, description: "Tax collection, debt management, and financial regulation." },
-      { key: "legislative", label: "Legislative Branch", percentage: 0.0090, description: "Congress, CBO, GAO, and support agencies." },
-      { key: "executive", label: "Executive Branch", percentage: 0.0090, description: "White House, OMB, and executive agencies." },
-      { key: "diplomacy", label: "Diplomacy & State Dept", percentage: 0.0060, description: "State Department, embassies, and foreign missions." },
-    ],
-  },
-  {
-    key: "other",
-    label: "Other Programs",
-    color: "#F59E0B",
-    micros: [
-      { key: "science", label: "Science & Space", percentage: 0.0180, description: "NASA, NSF, and basic scientific research funding." },
-      { key: "environment", label: "Environment & Climate", percentage: 0.0150, description: "EPA programs, national parks, and climate initiatives." },
-      { key: "agriculture", label: "Agriculture & Food Safety", percentage: 0.0120, description: "USDA programs, farm subsidies, and food safety." },
-      { key: "intl_aid", label: "International Aid", percentage: 0.0090, description: "USAID, foreign assistance, and global health programs." },
-      { key: "arts", label: "Arts & Culture", percentage: 0.0060, description: "NEA, NEH, Smithsonian, and public broadcasting." },
-    ],
-  },
-];
-
-const TOTAL_BUDGET_BILLIONS = 6750;
+import {
+  AUSTRALIA_BUDGET,
+  TOTAL_BUDGET_BILLIONS_AUD,
+  FISCAL_YEAR,
+  type MacroCategory,
+} from "@/data/australiaBudget";
 
 export default function Simulator() {
   const { data, isLoading, isError } = useGetBudgetData();
-  const [budget, setBudget] = useState<MacroCategory[]>(INITIAL_BUDGET);
+  const [budget, setBudget] = useState<MacroCategory[]>(AUSTRALIA_BUDGET);
   const [activeKey, setActiveKey] = useState<string | null>(null);
   const [tooltipKey, setTooltipKey] = useState<string | null>(null);
   const { mutate: submitPreference, isPending: isSubmitting } = useSubmitPreference();
@@ -147,7 +50,7 @@ export default function Simulator() {
   const isUnder = totalPct < 99.95;
   const isValid = !isOver && !isUnder;
   const delta = totalPct - 100;
-  const deltaB = (Math.abs(delta) / 100) * TOTAL_BUDGET_BILLIONS;
+  const deltaB = (Math.abs(delta) / 100) * TOTAL_BUDGET_BILLIONS_AUD;
 
   const activeMacro = budget.find((m) => m.key === activeKey) ?? null;
   const activeMacroTotal = activeMacro
@@ -159,7 +62,7 @@ export default function Simulator() {
     key: m.key,
     label: m.label,
     percentage: m.percentage,
-    amount: m.percentage * TOTAL_BUDGET_BILLIONS,
+    amount: m.percentage * TOTAL_BUDGET_BILLIONS_AUD,
     color: m.color,
     description: "",
   }));
@@ -180,7 +83,7 @@ export default function Simulator() {
   };
 
   const handleReset = () => {
-    setBudget(JSON.parse(JSON.stringify(INITIAL_BUDGET)));
+    setBudget(JSON.parse(JSON.stringify(AUSTRALIA_BUDGET)));
   };
 
   const handleSubmit = () => {
@@ -229,7 +132,7 @@ export default function Simulator() {
         <div>
           <h1 className="text-4xl font-display font-bold mb-2">Budget Simulator</h1>
           <p className="text-muted-foreground">
-            Adjust spending at micro level — macro totals update automatically.
+            Australian Federal Budget FY{FISCAL_YEAR} · AUD ${TOTAL_BUDGET_BILLIONS_AUD}B total outlays · Adjust micro spending, macro totals update live.
           </p>
         </div>
         <div className="flex items-center gap-3 self-start md:self-end">
@@ -258,8 +161,8 @@ export default function Simulator() {
                 </p>
                 <p className="text-destructive/80 mt-1">
                   {isOver
-                    ? `Your budget exceeds 100% by ${Math.abs(delta).toFixed(2)}%. This would require a $${deltaB.toFixed(0)}B tax increase or equivalent cuts elsewhere.`
-                    : `Your budget is ${Math.abs(delta).toFixed(2)}% short. $${deltaB.toFixed(0)}B remains unallocated — adjust sliders to reach exactly 100%.`}
+                    ? `Your budget exceeds 100% by ${Math.abs(delta).toFixed(2)}%. This would require an AUD $${deltaB.toFixed(0)}B tax increase or equivalent cuts elsewhere.`
+                    : `Your budget is ${Math.abs(delta).toFixed(2)}% short. AUD $${deltaB.toFixed(0)}B remains unallocated — adjust sliders to reach exactly 100%.`}
                 </p>
               </div>
             </div>
@@ -410,7 +313,7 @@ export default function Simulator() {
                       {(activeMacroTotal * 100).toFixed(2)}%
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      ${(activeMacroTotal * TOTAL_BUDGET_BILLIONS).toFixed(1)}B
+                      AUD ${(activeMacroTotal * TOTAL_BUDGET_BILLIONS_AUD).toFixed(1)}B
                       {estimatedTax > 0 && (
                         <> · <span className="text-primary font-medium">You: ${(activeMacroTotal * estimatedTax).toLocaleString("en-US", { maximumFractionDigits: 0 })}</span></>
                       )}
@@ -421,7 +324,7 @@ export default function Simulator() {
                 <div className="p-6 space-y-6 max-h-[480px] overflow-y-auto custom-scrollbar">
                   {activeMacro.micros.map((micro) => {
                     const microPct = micro.percentage * 100;
-                    const dollarB = (micro.percentage * TOTAL_BUDGET_BILLIONS).toFixed(1);
+                    const dollarB = (micro.percentage * TOTAL_BUDGET_BILLIONS_AUD).toFixed(1);
                     const personalAmt =
                       estimatedTax > 0
                         ? (micro.percentage * estimatedTax).toLocaleString("en-US", {
@@ -457,7 +360,7 @@ export default function Simulator() {
                             </div>
                             <div className="min-w-0">
                               <p className="font-medium text-sm leading-tight">{micro.label}</p>
-                              <p className="text-xs text-muted-foreground mt-0.5">${dollarB}B total</p>
+                              <p className="text-xs text-muted-foreground mt-0.5">AUD ${dollarB}B</p>
                             </div>
                           </div>
                           <div className="text-right shrink-0">
