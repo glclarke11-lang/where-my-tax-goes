@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { PieChart, Calculator, SlidersHorizontal, Share2, Menu, X } from "lucide-react";
+import { PieChart, Calculator, SlidersHorizontal, Share2, Menu, X, TrendingUp, Globe, Users } from "lucide-react";
 import { useState } from "react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -15,7 +15,10 @@ export function Navbar() {
   const links = [
     { href: "/calculator", label: "Calculator", icon: Calculator },
     { href: "/breakdown", label: "Breakdown", icon: PieChart },
+    { href: "/lifetime", label: "Lifetime", icon: TrendingUp },
+    { href: "/explorer", label: "Explorer", icon: Globe },
     { href: "/simulator", label: "Simulator", icon: SlidersHorizontal },
+    { href: "/sentiment", label: "Sentiment", icon: Users },
     { href: "/share", label: "Share", icon: Share2 },
   ];
 
@@ -29,13 +32,13 @@ export function Navbar() {
                 <PieChart className="w-5 h-5" />
               </div>
               <span className="font-display font-bold text-xl tracking-tight text-foreground">
-                WhereMy<span className="text-primary">Tax</span>Goes
+                Tax<span className="text-primary">Scope</span>
               </span>
             </Link>
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-1 overflow-x-auto no-scrollbar max-w-2xl">
             {links.map((link) => {
               const Icon = link.icon;
               const isActive = location === link.href;
@@ -44,7 +47,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                    "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap",
                     isActive
                       ? "bg-white/10 text-foreground"
                       : "text-muted-foreground hover:text-foreground hover:bg-white/5"
@@ -71,7 +74,7 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 glass-panel border-b border-white/5 shadow-2xl p-4 flex flex-col gap-2">
+        <div className="md:hidden absolute top-16 left-0 right-0 glass-panel border-b border-white/5 shadow-2xl p-4 flex flex-col gap-2 max-h-[calc(100vh-4rem)] overflow-y-auto">
           {links.map((link) => {
             const Icon = link.icon;
             const isActive = location === link.href;

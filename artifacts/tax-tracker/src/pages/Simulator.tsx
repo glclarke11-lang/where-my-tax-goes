@@ -1,13 +1,17 @@
 import { PageTransition } from "@/components/PageTransition";
-import { useGetBudgetData } from "@workspace/api-client-react";
+import { useGetBudgetData, useSubmitPreference } from "@workspace/api-client-react";
 import { useState, useEffect } from "react";
 import { TaxDoughnut } from "@/components/TaxDoughnut";
-import { Loader2, AlertTriangle, RefreshCcw } from "lucide-react";
+import { Loader2, AlertTriangle, RefreshCcw, CheckCircle, ArrowRight } from "lucide-react";
 import type { LocalSpendingCategory } from "@/hooks/use-tax-store";
+import { useToast } from "@/hooks/use-toast";
+import { Link } from "wouter";
 
 export default function Simulator() {
   const { data, isLoading, isError } = useGetBudgetData();
   const [simCategories, setSimCategories] = useState<LocalSpendingCategory[]>([]);
+  const { mutate: submitPreference, isPending: isSubmitting } = useSubmitPreference();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (data?.categories) {
@@ -26,6 +30,29 @@ export default function Simulator() {
     if (data?.categories) {
       setSimCategories(JSON.parse(JSON.stringify(data.categories)));
     }
+  };
+
+  const handleSubmit = () => {
+    const allocations: Record<string, number> = {};
+    simCategories.forEach(cat => {
+      allocations[cat.key] = cat.percentage * 100;
+    });
+
+    submitPreference({ data: { allocations } }, {
+      onSuccess: () => {
+        toast({
+          title: "Preferences Saved!",
+          description: "Your voice has been added to our public sentiment analytics.",
+        });
+      },
+      onError: () => {
+        toast({
+          title: "Error",
+          description: "Failed to submit preferences. Please try again.",
+          variant: "destructive"
+        });
+      }
+    });
   };
 
   if (isLoading) {
@@ -108,6 +135,26 @@ export default function Simulator() {
                 />
               </div>
             ))}
+          </div>
+
+          <div className="pt-4 border-t border-border flex flex-col gap-4">
+            <button
+              disabled={!isValid || isSubmitting}
+              onClick={handleSubmit}
+              className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary/20"
+            >
+              {isSubmitting ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <CheckCircle className="w-5 h-5" />
+              )}
+              Submit Your Preferences
+            </button>
+            <div className="text-center">
+              <Link href="/sentiment" className="text-sm text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1">
+                See how your preferences compare → View Sentiment Dashboard
+              </Link>
+            </div>
           </div>
         </div>
 

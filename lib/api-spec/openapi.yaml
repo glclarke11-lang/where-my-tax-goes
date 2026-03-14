@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
   title: Api
-  version: 0.1.0
-  description: Where My Tax Goes API
+  version: 0.2.0
+  description: TaxScope - Civic Tax Transparency Platform API
 servers:
   - url: /api
     description: Base API path
@@ -13,6 +13,10 @@ tags:
     description: Tax calculation operations
   - name: budget
     description: Budget data operations
+  - name: lifetime
+    description: Lifetime tax projection operations
+  - name: sentiment
+    description: Public sentiment and preference operations
 paths:
   /healthz:
     get:
@@ -59,6 +63,70 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BudgetData"
+  /national-budget:
+    get:
+      operationId: getNationalBudget
+      tags: [budget]
+      summary: Get national budget with sub-categories
+      description: Returns the full national budget breakdown with expandable sub-categories
+      responses:
+        "200":
+          description: National budget with sub-categories
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NationalBudget"
+  /lifetime-tax:
+    post:
+      operationId: calculateLifetimeTax
+      tags: [lifetime]
+      summary: Calculate lifetime tax contribution
+      description: Projects total lifetime tax paid and future contributions based on career trajectory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LifetimeTaxInput"
+      responses:
+        "200":
+          description: Lifetime tax projection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LifetimeTaxResult"
+  /public-sentiment:
+    get:
+      operationId: getPublicSentiment
+      tags: [sentiment]
+      summary: Get aggregated public sentiment data
+      description: Returns anonymized aggregated user budget preferences vs government allocations
+      responses:
+        "200":
+          description: Public sentiment data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicSentiment"
+  /submit-preference:
+    post:
+      operationId: submitPreference
+      tags: [sentiment]
+      summary: Submit anonymous budget preference
+      description: Stores anonymous user budget preference for aggregate analytics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PreferenceInput"
+      responses:
+        "200":
+          description: Preference submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubmitPreferenceResponse"
 components:
   schemas:
     HealthStatus:
@@ -83,13 +151,10 @@ components:
       properties:
         estimatedTax:
           type: number
-          description: Total estimated tax paid
         income:
           type: number
-          description: Income used for calculation
         effectiveRate:
           type: number
-          description: Effective tax rate as a decimal
         breakdown:
           type: array
           items:
@@ -104,22 +169,16 @@ components:
       properties:
         key:
           type: string
-          description: Category identifier
         label:
           type: string
-          description: Human-readable category name
         percentage:
           type: number
-          description: Fraction of budget (0-1)
         amount:
           type: number
-          description: Dollar amount from tax
         color:
           type: string
-          description: Hex color for this category
         description:
           type: string
-          description: Tooltip description of the category
       required:
         - key
         - label
@@ -136,11 +195,214 @@ components:
             $ref: "#/components/schemas/SpendingCategory"
         totalPercentage:
           type: number
-          description: Sum of all category percentages (should be 1.0)
         lastUpdated:
           type: string
-          description: ISO date string for last update
       required:
         - categories
         - totalPercentage
         - lastUpdated
+    BudgetSubCategory:
+      type: object
+      properties:
+        key:
+          type: string
+        label:
+          type: string
+        percentage:
+          type: number
+        description:
+          type: string
+      required:
+        - key
+        - label
+        - percentage
+        - description
+    NationalBudgetCategory:
+      type: object
+      properties:
+        key:
+          type: string
+        label:
+          type: string
+        percentage:
+          type: number
+        amount:
+          type: number
+        color:
+          type: string
+        description:
+          type: string
+        subCategories:
+          type: array
+          items:
+            $ref: "#/components/schemas/BudgetSubCategory"
+      required:
+        - key
+        - label
+        - percentage
+        - amount
+        - color
+        - description
+        - subCategories
+    NationalBudget:
+      type: object
+      properties:
+        categories:
+          type: array
+          items:
+            $ref: "#/components/schemas/NationalBudgetCategory"
+        totalBudgetBillions:
+          type: number
+          description: Total national budget in billions USD
+        fiscalYear:
+          type: string
+        lastUpdated:
+          type: string
+      required:
+        - categories
+        - totalBudgetBillions
+        - fiscalYear
+        - lastUpdated
+    LifetimeTaxInput:
+      type: object
+      properties:
+        currentAge:
+          type: number
+        retirementAge:
+          type: number
+        startingSalary:
+          type: number
+        currentSalary:
+          type: number
+        annualGrowthRate:
+          type: number
+          description: Expected annual salary growth as a decimal (e.g. 0.03 for 3%)
+      required:
+        - currentAge
+        - retirementAge
+        - startingSalary
+        - currentSalary
+        - annualGrowthRate
+    DecadeBreakdown:
+      type: object
+      properties:
+        decade:
+          type: string
+        totalTax:
+          type: number
+        averageIncome:
+          type: number
+        ageRange:
+          type: string
+      required:
+        - decade
+        - totalTax
+        - averageIncome
+        - ageRange
+    YearlyTaxPoint:
+      type: object
+      properties:
+        age:
+          type: number
+        year:
+          type: number
+        income:
+          type: number
+        tax:
+          type: number
+        cumulativeTax:
+          type: number
+      required:
+        - age
+        - year
+        - income
+        - tax
+        - cumulativeTax
+    LifetimeTaxResult:
+      type: object
+      properties:
+        totalLifetimeTax:
+          type: number
+        yearsWorking:
+          type: number
+        averageEffectiveRate:
+          type: number
+        categoryBreakdown:
+          type: array
+          items:
+            $ref: "#/components/schemas/SpendingCategory"
+        yearlyData:
+          type: array
+          items:
+            $ref: "#/components/schemas/YearlyTaxPoint"
+        decadeBreakdown:
+          type: array
+          items:
+            $ref: "#/components/schemas/DecadeBreakdown"
+      required:
+        - totalLifetimeTax
+        - yearsWorking
+        - averageEffectiveRate
+        - categoryBreakdown
+        - yearlyData
+        - decadeBreakdown
+    SentimentCategory:
+      type: object
+      properties:
+        key:
+          type: string
+        label:
+          type: string
+        color:
+          type: string
+        governmentAllocation:
+          type: number
+        averageUserPreference:
+          type: number
+        totalResponses:
+          type: number
+      required:
+        - key
+        - label
+        - color
+        - governmentAllocation
+        - averageUserPreference
+        - totalResponses
+    PublicSentiment:
+      type: object
+      properties:
+        categories:
+          type: array
+          items:
+            $ref: "#/components/schemas/SentimentCategory"
+        totalResponses:
+          type: number
+        lastUpdated:
+          type: string
+      required:
+        - categories
+        - totalResponses
+        - lastUpdated
+    PreferenceInput:
+      type: object
+      properties:
+        allocations:
+          type: object
+          additionalProperties:
+            type: number
+          description: Map of category key to allocation percentage (0-100)
+      required:
+        - allocations
+    SubmitPreferenceResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        totalResponses:
+          type: number
+      required:
+        - success
+        - message
+        - totalResponses

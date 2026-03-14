@@ -6,11 +6,10 @@
  * OpenAPI spec version: 0.2.0
  */
 
-export interface SpendingCategory {
-  key: string;
-  label: string;
-  percentage: number;
-  amount: number;
-  color: string;
-  description: string;
+export interface YearlyTaxPoint {
+  age: number;
+  year: number;
+  income: number;
+  tax: number;
+  cumulativeTax: number;
 }

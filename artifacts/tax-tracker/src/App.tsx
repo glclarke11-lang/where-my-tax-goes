@@ -11,6 +11,9 @@ import Calculator from "@/pages/Calculator";
 import Breakdown from "@/pages/Breakdown";
 import Simulator from "@/pages/Simulator";
 import Share from "@/pages/Share";
+import Lifetime from "@/pages/Lifetime";
+import Explorer from "@/pages/Explorer";
+import Sentiment from "@/pages/Sentiment";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient({
@@ -30,6 +33,9 @@ function Router() {
       <Route path="/breakdown" component={Breakdown} />
       <Route path="/simulator" component={Simulator} />
       <Route path="/share" component={Share} />
+      <Route path="/lifetime" component={Lifetime} />
+      <Route path="/explorer" component={Explorer} />
+      <Route path="/sentiment" component={Sentiment} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,0 +1,157 @@
+Upgrade the existing application **"Where My Tax Goes"** into a much larger civic transparency and tax insight platform.
+
+Do NOT rebuild the app from scratch.
+Instead, expand the current project with new features, pages, analytics tools, and monetisation capabilities.
+
+The application should feel like a **professional civic data platform similar to Stripe analytics dashboards or modern fintech apps**.
+
+Use the existing React + Tailwind + Chart.js stack.
+
+---
+
+NEW PLATFORM NAME
+
+Rename the platform to:
+
+**TaxScope**
+
+Tagline:
+"Understand where your taxes go."
+
+---
+
+NEW CORE FEATURES
+
+Add the following major modules to the platform.
+
+---
+
+1. Lifetime Tax Contribution
+
+Create a new page called **Lifetime Tax Dashboard**.
+
+Users enter:
+
+• age
+• starting salary
+• current salary
+• salary growth estimate
+• retirement age
+
+The app estimates:
+
+• total lifetime taxes paid
+• projected future taxes
+• retirement tax contribution
+
+Display results as charts showing:
+
+• lifetime taxes by category
+• yearly tax growth
+• contribution by decade
+
+Example output:
+
+Healthcare: $143,200
+Education: $54,800
+Defence: $38,200
+Infrastructure: $32,600
+
+Use animated stacked charts.
+
+---
+
+2. National Budget Explorer
+
+Add a page showing the **entire national budget breakdown**.
+
+Include:
+
+• pie chart
+• bar charts
+• category cards
+
+Users can click categories to expand details.
+
+Example:
+
+Healthcare expands to:
+
+Hospitals
+Medicare
+Pharmaceuticals
+Mental Health
+
+Charts must animate and allow hover tooltips.
+
+---
+
+3. Interactive Budget Simulator
+
+Expand the existing simulator.
+
+Users can create a **custom national budget**.
+
+Controls:
+
+sliders for spending categories.
+
+Display:
+
+• budget deficit or surplus
+• tax change required
+• spending comparison with real government budget.
+
+Add a visualization comparing:
+
+User Budget vs Government Budget.
+
+---
+
+4. Public Sentiment Dashboard
+
+Create an analytics module that aggregates anonymous user preferences.
+
+Display charts such as:
+
+Preferred Healthcare Spending
+Preferred Defence Spending
+Most Supported Budget Changes
+
+Example charts:
+
+"Average user preference vs government spending."
+
+This dashboard should look like a **professional analytics product**.
+
+---
+
+5. Shareable Tax Receipt
+
+Create a feature where users generate a **shareable visual summary**.
+
+Example card:
+
+"My 2026 Tax Receipt"
+
+Healthcare: $7,200
+Education: $3,000
+Defence: $2,100
+Infrastructure: $1,800
+
+Users can:
+
+• download image
+• share on social media.
+
+Use HTML canvas to generate the image.
+
+---
+
+6. Government vs Citizen Comparison
+
+Create a visualization comparing:
+
+User preferred budget
+Average citizen preference
+Ac

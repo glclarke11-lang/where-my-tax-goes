@@ -5,10 +5,10 @@
  * TaxScope - Civic Tax Transparency Platform API
  * OpenAPI spec version: 0.2.0
  */
-import type { SpendingCategory } from "./spendingCategory";
+import type { SentimentCategory } from "./sentimentCategory";
 
-export interface BudgetData {
-  categories: SpendingCategory[];
-  totalPercentage: number;
+export interface PublicSentiment {
+  categories: SentimentCategory[];
+  totalResponses: number;
   lastUpdated: string;
 }

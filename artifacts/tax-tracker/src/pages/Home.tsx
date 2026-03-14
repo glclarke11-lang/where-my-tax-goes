@@ -1,6 +1,6 @@
 import { PageTransition } from "@/components/PageTransition";
 import { Link } from "wouter";
-import { Calculator, ArrowRight, PieChart, ShieldCheck, SlidersHorizontal, Share2 } from "lucide-react";
+import { Calculator, ArrowRight, PieChart, ShieldCheck, SlidersHorizontal, Share2, TrendingUp, Globe, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8"
         >
           <ShieldCheck className="w-4 h-4" />
-          <span>Transparent Government Spending</span>
+          <span>TaxScope Civic Data Platform</span>
         </motion.div>
         
         <motion.h1 
@@ -33,8 +33,8 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-5xl md:text-7xl font-display font-extrabold text-foreground mb-6 leading-tight"
         >
-          Where Does Your <br className="hidden md:block" />
-          <span className="text-gradient">Tax Actually Go?</span>
+          Understand Where Your <br className="hidden md:block" />
+          <span className="text-gradient">Taxes Go</span>
         </motion.h1>
         
         <motion.p 
@@ -74,7 +74,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.5 }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24 w-full max-w-5xl"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-24 w-full max-w-6xl pb-16"
       >
         <FeatureCard 
           title="Personalized Insights" 
@@ -90,6 +90,21 @@ export default function Home() {
           title="Shareable Cards" 
           description="Export a beautiful summary graphic of your tax breakdown to share on social media."
           icon={<Share2 className="w-6 h-6 text-pink-500" />}
+        />
+        <FeatureCard 
+          title="Lifetime Tax Dashboard" 
+          description="Project your total career tax contribution and understand your lifetime impact."
+          icon={<TrendingUp className="w-6 h-6 text-green-500" />}
+        />
+        <FeatureCard 
+          title="National Budget Explorer" 
+          description="Drill into every spending category of the national budget with detailed sub-categories."
+          icon={<Globe className="w-6 h-6 text-blue-500" />}
+        />
+        <FeatureCard 
+          title="Public Sentiment" 
+          description="See what other citizens prefer and how it compares to actual government allocation."
+          icon={<Users className="w-6 h-6 text-purple-500" />}
         />
       </motion.div>
     </PageTransition>

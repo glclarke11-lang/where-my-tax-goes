@@ -6,11 +6,11 @@
  * OpenAPI spec version: 0.2.0
  */
 
-export interface SpendingCategory {
+export interface SentimentCategory {
   key: string;
   label: string;
-  percentage: number;
-  amount: number;
   color: string;
-  description: string;
+  governmentAllocation: number;
+  averageUserPreference: number;
+  totalResponses: number;
 }

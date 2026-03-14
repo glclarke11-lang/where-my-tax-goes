@@ -5,12 +5,14 @@
  * TaxScope - Civic Tax Transparency Platform API
  * OpenAPI spec version: 0.2.0
  */
+import type { BudgetSubCategory } from "./budgetSubCategory";
 
-export interface SpendingCategory {
+export interface NationalBudgetCategory {
   key: string;
   label: string;
   percentage: number;
   amount: number;
   color: string;
   description: string;
+  subCategories: BudgetSubCategory[];
 }

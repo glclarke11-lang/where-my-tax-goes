@@ -6,11 +6,9 @@
  * OpenAPI spec version: 0.2.0
  */
 
-export interface SpendingCategory {
+export interface BudgetSubCategory {
   key: string;
   label: string;
   percentage: number;
-  amount: number;
-  color: string;
   description: string;
 }
