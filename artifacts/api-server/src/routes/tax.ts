@@ -1,10 +1,7 @@
 import { Router, type IRouter } from "express";
-import { readFileSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
 import { CalculateTaxBody, CalculateTaxResponse, GetBudgetDataResponse } from "@workspace/api-zod";
+import budgetDataRaw from "../data/budgetData.json";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
 const router: IRouter = Router();
 
 interface CategoryConfig {
@@ -20,9 +17,7 @@ interface BudgetConfig {
 }
 
 function loadBudgetData(): BudgetConfig {
-  const dataPath = join(__dirname, "../data/budgetData.json");
-  const raw = readFileSync(dataPath, "utf-8");
-  return JSON.parse(raw) as BudgetConfig;
+  return budgetDataRaw as unknown as BudgetConfig;
 }
 
 function estimateTax(income: number): number {
