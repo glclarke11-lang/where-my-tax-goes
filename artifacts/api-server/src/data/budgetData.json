@@ -1,0 +1,51 @@
+{
+  "healthcare": {
+    "key": "healthcare",
+    "label": "Healthcare",
+    "percentage": 0.36,
+    "color": "#10B981",
+    "description": "Healthcare includes hospitals, Medicare, Medicaid, and public health services."
+  },
+  "education": {
+    "key": "education",
+    "label": "Education",
+    "percentage": 0.15,
+    "color": "#3B82F6",
+    "description": "Education covers public schools, universities, student loans, and research grants."
+  },
+  "defence": {
+    "key": "defence",
+    "label": "Defence",
+    "percentage": 0.10,
+    "color": "#EF4444",
+    "description": "Defence includes the military, national security, and veteran benefits."
+  },
+  "infrastructure": {
+    "key": "infrastructure",
+    "label": "Infrastructure",
+    "percentage": 0.09,
+    "color": "#F97316",
+    "description": "Infrastructure covers roads, bridges, public transit, water systems, and broadband."
+  },
+  "welfare": {
+    "key": "welfare",
+    "label": "Welfare",
+    "percentage": 0.18,
+    "color": "#8B5CF6",
+    "description": "Welfare includes Social Security, unemployment benefits, housing assistance, and food programs."
+  },
+  "admin": {
+    "key": "admin",
+    "label": "Government Admin",
+    "percentage": 0.06,
+    "color": "#6B7280",
+    "description": "Government Administration covers federal agencies, justice, and general operations."
+  },
+  "other": {
+    "key": "other",
+    "label": "Other",
+    "percentage": 0.06,
+    "color": "#F59E0B",
+    "description": "Other includes international aid, environmental programs, arts, and science."
+  }
+}

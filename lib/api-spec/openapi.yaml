@@ -1,15 +1,18 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Where My Tax Goes API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: tax
+    description: Tax calculation operations
+  - name: budget
+    description: Budget data operations
 paths:
   /healthz:
     get:
@@ -24,6 +27,38 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /calculate-tax:
+    post:
+      operationId: calculateTax
+      tags: [tax]
+      summary: Calculate tax and breakdown
+      description: Given an income or tax amount, returns estimated tax paid and spending breakdown
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaxInput"
+      responses:
+        "200":
+          description: Tax calculation result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaxResult"
+  /get-budget-data:
+    get:
+      operationId: getBudgetData
+      tags: [budget]
+      summary: Get government budget allocations
+      description: Returns the current government budget distribution percentages
+      responses:
+        "200":
+          description: Budget data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BudgetData"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +68,79 @@ components:
           type: string
       required:
         - status
-
+    TaxInput:
+      type: object
+      properties:
+        income:
+          type: number
+          description: Annual income in dollars
+        taxPaid:
+          type: number
+          description: Optional override for tax paid amount
+      required: []
+    TaxResult:
+      type: object
+      properties:
+        estimatedTax:
+          type: number
+          description: Total estimated tax paid
+        income:
+          type: number
+          description: Income used for calculation
+        effectiveRate:
+          type: number
+          description: Effective tax rate as a decimal
+        breakdown:
+          type: array
+          items:
+            $ref: "#/components/schemas/SpendingCategory"
+      required:
+        - estimatedTax
+        - income
+        - effectiveRate
+        - breakdown
+    SpendingCategory:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Category identifier
+        label:
+          type: string
+          description: Human-readable category name
+        percentage:
+          type: number
+          description: Fraction of budget (0-1)
+        amount:
+          type: number
+          description: Dollar amount from tax
+        color:
+          type: string
+          description: Hex color for this category
+        description:
+          type: string
+          description: Tooltip description of the category
+      required:
+        - key
+        - label
+        - percentage
+        - amount
+        - color
+        - description
+    BudgetData:
+      type: object
+      properties:
+        categories:
+          type: array
+          items:
+            $ref: "#/components/schemas/SpendingCategory"
+        totalPercentage:
+          type: number
+          description: Sum of all category percentages (should be 1.0)
+        lastUpdated:
+          type: string
+          description: ISO date string for last update
+      required:
+        - categories
+        - totalPercentage
+        - lastUpdated

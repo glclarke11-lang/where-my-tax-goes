@@ -1,0 +1,17 @@
+packages:
+  "framer-motion": "For page transitions and complex animations"
+  "chart.js": "Core charting library"
+  "react-chartjs-2": "React wrapper for chart.js"
+  "html2canvas": "For exporting shareable result cards"
+  "clsx": "Utility for constructing className strings"
+  "tailwind-merge": "Utility for merging tailwind classes safely"
+
+images:
+  - path: "artifacts/tax-tracker/public/images/hero-bg.png"
+    description: "Dark, moody abstract background with glowing teal and indigo gradient meshes, subtle noise texture, highly cinematic and premium"
+    aspect_ratio: "16:9"
+
+notes:
+  - Uses @workspace/api-client-react for TanStack Query hooks.
+  - Expects healthz, calculateTax, and getBudgetData endpoints to be available.
+  - Application defaults to a dark mode theme for a modern dashboard look.

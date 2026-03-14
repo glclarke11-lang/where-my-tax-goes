@@ -1,0 +1,320 @@
+Build a full-stack web application called **“Where My Tax Goes”** that allows users to estimate how their personal taxes are distributed across government spending categories.
+
+The application must be clean, modern, interactive, and data-visualization focused.
+
+Tech stack:
+
+* React (frontend)
+* TailwindCSS (styling)
+* Chart.js (data visualization)
+* Node.js + Express backend
+* JSON data file for government budget allocations
+* Fully responsive design
+* Dark mode support
+
+The final product must be **fully functional**, not just UI mockups.
+
+---
+
+APP PURPOSE
+
+Users enter their income or estimated tax paid.
+
+The app calculates:
+
+1. Estimated tax paid
+2. Converts that tax into a **personalized government spending breakdown**
+3. Displays the breakdown using **animated charts and interactive visuals**
+
+Example:
+
+User tax contribution: $20,000
+
+Breakdown:
+
+Healthcare — $7,200
+Education — $3,000
+Defence — $2,100
+Infrastructure — $1,800
+Welfare — $3,500
+Government Admin — $1,200
+Other — $1,200
+
+Show this as:
+
+• Animated pie chart
+• Category cards with dollar values
+• Percentage sliders
+
+---
+
+PROJECT STRUCTURE
+
+frontend/
+components/
+pages/
+
+backend/
+
+data/
+
+budgetData.json
+
+---
+
+DATA STRUCTURE
+
+Create a JSON file called **budgetData.json**
+
+Example:
+
+{
+"healthcare": 0.36,
+"education": 0.15,
+"defence": 0.10,
+"infrastructure": 0.09,
+"welfare": 0.18,
+"admin": 0.06,
+"other": 0.06
+}
+
+This represents the default government spending distribution.
+
+---
+
+PAGES
+
+1. Landing Page
+
+Hero section:
+
+Title:
+"Where Does Your Tax Actually Go?"
+
+Subtitle:
+"See how your personal taxes fund government spending."
+
+Buttons:
+
+Start Calculation
+View Budget Breakdown
+
+Include:
+
+• Example animated pie chart
+• Feature explanation cards
+• Modern gradient background
+• Smooth scroll animations
+
+---
+
+2. Tax Calculator Page
+
+User inputs:
+
+Annual income
+Tax paid (optional override)
+
+If income is entered, estimate tax using simple progressive brackets.
+
+Display:
+
+Estimated tax paid.
+
+Then automatically convert that into a **spending breakdown** using the budget percentages.
+
+Show:
+
+• Animated pie chart
+• Category cards showing dollars + percentages
+• Hover tooltips explaining categories
+
+Example tooltip:
+
+Healthcare includes hospitals, Medicare, and public health services.
+
+---
+
+3. Budget Breakdown Page
+
+Show the **full government spending distribution**.
+
+Large interactive pie chart.
+
+Categories:
+
+Healthcare
+Education
+Defence
+Infrastructure
+Welfare
+Government Administration
+Other
+
+When hovering a segment display:
+
+"$3,240 of your taxes fund Healthcare."
+
+---
+
+4. Budget Simulator Page
+
+Allow users to adjust spending preferences.
+
+Provide sliders for:
+
+Healthcare
+Education
+Defence
+Infrastructure
+Welfare
+Admin
+Other
+
+Rules:
+
+Total must equal 100%.
+
+When sliders move:
+
+• Chart updates live
+• Dollar values update
+• Warning if total exceeds 100%
+
+Display comparison:
+
+Current Government Budget vs Your Preferred Budget.
+
+---
+
+5. Share Results Page
+
+Generate a shareable results card.
+
+Example card:
+
+"My Tax Breakdown"
+
+Healthcare: $7,200
+Education: $3,000
+Defence: $2,100
+Infrastructure: $1,800
+
+Features:
+
+Download image button
+Share button
+
+Use canvas to generate shareable graphics.
+
+---
+
+DESIGN REQUIREMENTS
+
+Use TailwindCSS.
+
+Design style:
+
+Modern dashboard.
+
+Inspired by:
+
+Stripe dashboards
+Notion analytics
+Apple system UI
+
+Visual requirements:
+
+• Soft gradients
+• Card-based layout
+• Smooth animations
+• Rounded edges
+• Clean typography
+• Responsive mobile layout
+
+---
+
+COLOR SYSTEM
+
+Healthcare — green
+Education — blue
+Defence — red
+Infrastructure — orange
+Welfare — purple
+Admin — gray
+Other — yellow
+
+Charts must use these colors consistently.
+
+---
+
+FEATURES
+
+Include:
+
+Dark mode toggle.
+
+Animated chart transitions.
+
+Live updating calculations.
+
+Hover tooltips.
+
+Clean loading states.
+
+---
+
+CODE STRUCTURE
+
+components/
+
+TaxInput.jsx
+BudgetPieChart.jsx
+BudgetSliders.jsx
+BreakdownCards.jsx
+ShareCard.jsx
+
+pages/
+
+Landing.jsx
+Calculator.jsx
+Budget.jsx
+Simulator.jsx
+Results.jsx
+
+Backend:
+
+Node + Express API
+
+Endpoints:
+
+/calculate-tax
+/get-budget-data
+
+---
+
+CALCULATIONS
+
+Tax estimation can use simplified progressive brackets.
+
+All spending calculations must update instantly in the browser.
+
+---
+
+FUTURE EXPANSION
+
+Structure the code so it can later support:
+
+• Multiple countries
+• Real government budget APIs
+• User accounts
+• Citizen voting on spending priorities
+• Historical budget comparisons
+
+---
+
+FINAL REQUIREMENT
+
+Deliver a **fully working app** with navigation between pages, working charts, and real calculations.
+
+Focus on **clarity, data visualization, and educational value**.

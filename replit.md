@@ -21,7 +21,8 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 ```text
 artifacts-monorepo/
 ├── artifacts/              # Deployable applications
-│   └── api-server/         # Express API server
+│   ├── api-server/         # Express API server
+│   └── tax-tracker/        # Where My Tax Goes - React/Vite frontend
 ├── lib/                    # Shared libraries
 │   ├── api-spec/           # OpenAPI spec + Orval codegen config
 │   ├── api-client-react/   # Generated React Query hooks
@@ -34,6 +35,36 @@ artifacts-monorepo/
 ├── tsconfig.json           # Root TS project references
 └── package.json            # Root package with hoisted devDeps
 ```
+
+## Where My Tax Goes App
+
+### Purpose
+An interactive web app that lets users estimate how their personal taxes are distributed across government spending categories.
+
+### Pages
+1. **Landing** (`/`) - Hero section with animated chart and feature cards
+2. **Calculator** (`/calculator`) - Income input with progressive tax brackets, spending breakdown
+3. **Breakdown** (`/breakdown`) - Full government budget distribution chart
+4. **Simulator** (`/simulator`) - Interactive sliders to adjust budget allocations
+5. **Share** (`/share`) - Downloadable/shareable result card via html2canvas
+
+### Key Features
+- Dark mode dashboard design with soft gradients
+- Animated Chart.js doughnut charts (react-chartjs-2)
+- Real API integration: POST /api/calculate-tax, GET /api/get-budget-data
+- Progressive tax bracket calculation
+- Budget simulator with live chart updates
+- Shareable image export via html2canvas
+- Framer Motion page transitions
+
+### Budget Categories (budgetData.json)
+- Healthcare (36%) - #10B981 green
+- Welfare (18%) - #8B5CF6 purple
+- Education (15%) - #3B82F6 blue
+- Defence (10%) - #EF4444 red
+- Infrastructure (9%) - #F97316 orange
+- Admin (6%) - #6B7280 gray
+- Other (6%) - #F59E0B yellow
 
 ## TypeScript & Composite Projects
 
@@ -56,41 +87,34 @@ Express 5 API server. Routes live in `src/routes/` and use `@workspace/api-zod` 
 
 - Entry: `src/index.ts` — reads `PORT`, starts Express
 - App setup: `src/app.ts` — mounts CORS, JSON/urlencoded parsing, routes at `/api`
-- Routes: `src/routes/index.ts` mounts sub-routers; `src/routes/health.ts` exposes `GET /health` (full path: `/api/health`)
+- Routes: `src/routes/index.ts` mounts sub-routers
+  - `src/routes/health.ts` — `GET /api/healthz`
+  - `src/routes/tax.ts` — `POST /api/calculate-tax`, `GET /api/get-budget-data`
+- Data: `src/data/budgetData.json` — government spending allocations
 - Depends on: `@workspace/db`, `@workspace/api-zod`
-- `pnpm --filter @workspace/api-server run dev` — run the dev server
-- `pnpm --filter @workspace/api-server run build` — production esbuild bundle (`dist/index.cjs`)
-- Build bundles an allowlist of deps (express, cors, pg, drizzle-orm, zod, etc.) and externalizes the rest
+
+### `artifacts/tax-tracker` (`@workspace/tax-tracker`)
+
+React + Vite frontend for "Where My Tax Goes".
+
+- Entry: `src/main.tsx`
+- Pages: `src/pages/` — Home, Calculator, Breakdown, Simulator, Share
+- Components: `src/components/` — Navbar, TaxDoughnut, CategoryCard, PageTransition
+- Hooks: `src/hooks/use-tax-store.tsx` — global state for tax results
+- Dependencies: chart.js, react-chartjs-2, framer-motion, html2canvas, tailwind-merge, clsx
 
 ### `lib/db` (`@workspace/db`)
 
-Database layer using Drizzle ORM with PostgreSQL. Exports a Drizzle client instance and schema models.
-
-- `src/index.ts` — creates a `Pool` + Drizzle instance, exports schema
-- `src/schema/index.ts` — barrel re-export of all models
-- `src/schema/<modelname>.ts` — table definitions with `drizzle-zod` insert schemas (no models definitions exist right now)
-- `drizzle.config.ts` — Drizzle Kit config (requires `DATABASE_URL`, automatically provided by Replit)
-- Exports: `.` (pool, db, schema), `./schema` (schema only)
-
-Production migrations are handled by Replit when publishing. In development, we just use `pnpm --filter @workspace/db run push`, and we fallback to `pnpm --filter @workspace/db run push-force`.
+Database layer using Drizzle ORM with PostgreSQL.
 
 ### `lib/api-spec` (`@workspace/api-spec`)
 
-Owns the OpenAPI 3.1 spec (`openapi.yaml`) and the Orval config (`orval.config.ts`). Running codegen produces output into two sibling packages:
-
-1. `lib/api-client-react/src/generated/` — React Query hooks + fetch client
-2. `lib/api-zod/src/generated/` — Zod schemas
-
-Run codegen: `pnpm --filter @workspace/api-spec run codegen`
+OpenAPI 3.1 spec in `openapi.yaml`. Run codegen: `pnpm --filter @workspace/api-spec run codegen`
 
 ### `lib/api-zod` (`@workspace/api-zod`)
 
-Generated Zod schemas from the OpenAPI spec (e.g. `HealthCheckResponse`). Used by `api-server` for response validation.
+Generated Zod schemas: `HealthCheckResponse`, `CalculateTaxBody`, `CalculateTaxResponse`, `GetBudgetDataResponse`, `SpendingCategoryResponse`, `BudgetDataResponse`
 
 ### `lib/api-client-react` (`@workspace/api-client-react`)
 
-Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHealthCheck`, `healthCheck`).
-
-### `scripts` (`@workspace/scripts`)
-
-Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`. Scripts can import any workspace package (e.g., `@workspace/db`) by adding it as a dependency in `scripts/package.json`.
+Generated React Query hooks: `useCalculateTax`, `useGetBudgetData`, `useHealthCheck`

@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Where My Tax Goes"
+version = "1.0.0"
+id = "artifacts/tax-tracker"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+localPort = 25487
+name = "web"
+paths = ["/"]
+
+[services.development]
+run = "pnpm --filter @workspace/tax-tracker run dev"
+
+[services.env]
+PORT = "25487"
+BASE_PATH = "/"
+
+[services.production]
+build = ["pnpm", "--filter", "@workspace/tax-tracker", "run", "build"]
+publicDir = "artifacts/tax-tracker/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
