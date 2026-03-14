@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { PieChart, Calculator, SlidersHorizontal, Share2, Menu, X, TrendingUp, Globe, Users } from "lucide-react";
+import { PieChart, Calculator, SlidersHorizontal, Share2, Menu, X, TrendingUp, Globe, Users, MapPin } from "lucide-react";
 import { useState } from "react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -19,6 +19,7 @@ export function Navbar() {
     { href: "/explorer", label: "Explorer", icon: Globe },
     { href: "/simulator", label: "Simulator", icon: SlidersHorizontal },
     { href: "/sentiment", label: "Sentiment", icon: Users },
+    { href: "/money-map", label: "Money Map", icon: MapPin },
     { href: "/share", label: "Share", icon: Share2 },
   ];
 

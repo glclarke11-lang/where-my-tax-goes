@@ -14,6 +14,7 @@ import Share from "@/pages/Share";
 import Lifetime from "@/pages/Lifetime";
 import Explorer from "@/pages/Explorer";
 import Sentiment from "@/pages/Sentiment";
+import FollowTheMoney from "@/pages/FollowTheMoney";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient({
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/lifetime" component={Lifetime} />
       <Route path="/explorer" component={Explorer} />
       <Route path="/sentiment" component={Sentiment} />
+      <Route path="/money-map" component={FollowTheMoney} />
       <Route component={NotFound} />
     </Switch>
   );
