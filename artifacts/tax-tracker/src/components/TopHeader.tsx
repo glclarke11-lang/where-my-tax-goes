@@ -9,6 +9,7 @@ const ROUTE_META: Record<string, { title: string; description: string }> = {
   "/lifetime": { title: "Lifetime Taxes", description: "Project your total career tax contribution over time" },
   "/explorer": { title: "National Budget Explorer", description: "Drill into every Australian federal spending category" },
   "/simulator": { title: "Budget Simulator", description: "Redesign the federal budget and submit your preference" },
+  "/run-the-country": { title: "Run the Country", description: "Balance revenue, spending, deficit & public approval as Treasurer" },
   "/sentiment": { title: "Public Sentiment", description: "Compare citizen preferences to actual government allocation" },
   "/money-map": { title: "Follow the Money Map", description: "Visualise where your taxes fund infrastructure across Australia" },
   "/share": { title: "Share Your Receipt", description: "Export and share your personalised tax breakdown card" },

@@ -17,6 +17,7 @@ import Lifetime from "@/pages/Lifetime";
 import Explorer from "@/pages/Explorer";
 import Sentiment from "@/pages/Sentiment";
 import FollowTheMoney from "@/pages/FollowTheMoney";
+import RunTheCountry from "@/pages/RunTheCountry";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient({
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/calculator" component={Calculator} />
       <Route path="/breakdown" component={Breakdown} />
       <Route path="/simulator" component={Simulator} />
+      <Route path="/run-the-country" component={RunTheCountry} />
       <Route path="/share" component={Share} />
       <Route path="/lifetime" component={Lifetime} />
       <Route path="/explorer" component={Explorer} />

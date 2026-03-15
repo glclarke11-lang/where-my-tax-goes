@@ -10,6 +10,7 @@ import {
   MapPin,
   Home,
   X,
+  Landmark,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -20,6 +21,7 @@ const NAV_ITEMS = [
   { href: "/lifetime", label: "Lifetime Taxes", icon: TrendingUp },
   { href: "/explorer", label: "Budget Explorer", icon: Globe },
   { href: "/simulator", label: "Simulator", icon: SlidersHorizontal },
+  { href: "/run-the-country", label: "Run the Country", icon: Landmark },
   { href: "/sentiment", label: "Sentiment", icon: Users },
   { href: "/money-map", label: "Money Map", icon: MapPin },
   { href: "/share", label: "Share", icon: Share2 },
