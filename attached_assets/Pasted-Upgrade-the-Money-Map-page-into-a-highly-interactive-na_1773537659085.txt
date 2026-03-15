@@ -1,0 +1,205 @@
+Upgrade the Money Map page into a **highly interactive national spending visualization** that shows how tax revenue flows through Australia using heatmaps and animated economic currents.
+
+Do not remove the existing heatmap. Expand it with additional visualization layers and interactions.
+
+Use React with Leaflet.js or Mapbox.
+
+---
+
+CORE MAP LAYERS
+
+The map should support multiple visualization layers.
+
+Layers should include:
+
+1. Spending Heatmap
+2. Revenue Flow Currents
+3. Sector Filters
+4. Personal Tax Impact Overlay
+
+Users must be able to toggle layers on and off.
+
+---
+
+SPENDING HEATMAP
+
+Improve the existing heatmap.
+
+Color scale:
+
+Blue → Green → Yellow → Red
+
+Meaning:
+
+Blue = low spending
+Red = high spending
+
+Heatmap should represent total federal spending concentration.
+
+Major cities should naturally appear hotter.
+
+---
+
+ECONOMIC FLOW CURRENTS
+
+Add animated flow lines showing how tax revenue moves through the economy.
+
+Example flows:
+
+Population centers → federal revenue
+Federal budget → major spending sectors
+
+Use animated curved lines similar to airline route maps.
+
+Flow directions:
+
+Sydney → Canberra (federal revenue)
+Melbourne → Canberra
+Brisbane → Canberra
+
+Then from Canberra:
+
+Canberra → Healthcare
+Canberra → Welfare
+Canberra → Defence
+Canberra → Education
+
+Lines should gently animate with moving particles to represent money flow.
+
+---
+
+CATEGORY FILTERS
+
+Add a vertical filter panel beside the map.
+
+Users should be able to filter spending by category:
+
+All Spending
+Healthcare
+Education
+Defence
+Infrastructure
+Welfare
+Environment
+
+When a category is selected:
+
+The heatmap recalculates using only that spending category.
+
+Example:
+
+Healthcare filter shows hospital regions.
+
+Defence filter shows military bases.
+
+Infrastructure filter highlights transport corridors.
+
+---
+
+HOVER INFORMATION
+
+When hovering on the map display a data card.
+
+Example:
+
+Sydney Region
+
+Federal spending: $142B
+
+Top sectors:
+Healthcare
+Infrastructure
+Education
+
+If a user has entered their tax amount also show:
+
+Your contribution: $1,820
+
+---
+
+PERSONAL TAX IMPACT OVERLAY
+
+If the user enters their tax amount:
+
+Calculate their share of spending for each region.
+
+Display a small overlay panel:
+
+Example:
+
+Your taxes this year: $18,420
+
+Estimated contribution by region:
+
+NSW: $5,400
+VIC: $4,100
+QLD: $3,200
+WA: $2,200
+
+Update dynamically when tax input changes.
+
+---
+
+SPENDING LEGEND
+
+Add a legend explaining heatmap colors.
+
+Example:
+
+Spending Intensity
+
+Blue → Low
+Green → Medium
+Yellow → High
+Red → Very High
+
+Display legend in the bottom corner of the map.
+
+---
+
+FLOW TOGGLE
+
+Add a toggle button:
+
+Show Revenue Currents
+
+When enabled:
+
+Animate economic flow lines across the map.
+
+When disabled:
+
+Map returns to pure heatmap view.
+
+---
+
+VISUAL DESIGN
+
+Map must feel immersive.
+
+Requirements:
+
+Large full-width map area
+Smooth animated transitions
+Soft glowing flow lines
+Subtle particle motion along currents
+
+The map should look similar to airline route maps or weather radar.
+
+---
+
+PERFORMANCE
+
+Ensure animations are efficient.
+
+Use requestAnimationFrame for particle movement.
+
+Limit particle count for smooth rendering.
+
+---
+
+GOAL
+
+Create a visually impressive map that allows users to explore how tax revenue flows through Australia geographically and sector-by-sector.
+
+The map should feel like a live economic system rather than a static visualization.

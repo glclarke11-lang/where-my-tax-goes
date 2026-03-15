@@ -161,3 +161,18 @@
 .leaflet-attribution-flag {
   display: none !important;
 }
+
+/* ─── Money Map: animated flow currents ────────────────────────────────── */
+.lf-rev-core  { animation: lfFlowRev  1.2s linear infinite; }
+.lf-rev-glow  { animation: lfFlowRev  1.2s linear infinite; }
+.lf-spd-core  { animation: lfFlowSpd  1.9s linear infinite; }
+.lf-spd-glow  { animation: lfFlowSpd  1.9s linear infinite; }
+
+@keyframes lfFlowRev {
+  from { stroke-dashoffset: 22; }
+  to   { stroke-dashoffset: 0;  }
+}
+@keyframes lfFlowSpd {
+  from { stroke-dashoffset: 22; }
+  to   { stroke-dashoffset: 0;  }
+}
