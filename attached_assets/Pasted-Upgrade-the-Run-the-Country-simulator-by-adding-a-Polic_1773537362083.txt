@@ -1,0 +1,157 @@
+Upgrade the "Run the Country" simulator by adding a **Policy Challenge Mode** that turns the simulator into an interactive civic game.
+
+Do not remove the existing simulator functionality.
+
+Add a new feature where users are given policy challenges they must solve using the budget controls.
+
+---
+
+NEW COMPONENT
+
+Create a component called:
+
+PolicyChallenges.jsx
+
+Display this above or beside the simulator controls.
+
+---
+
+CHALLENGE SYSTEM
+
+Create a list of predefined challenges.
+
+Example challenges:
+
+1. Balanced Budget
+
+Objective:
+Reduce the deficit below $5B.
+
+Constraints:
+Approval rating must remain above 50%.
+
+---
+
+2. Healthcare Expansion
+
+Objective:
+Increase healthcare spending to 20%.
+
+Constraints:
+Deficit must remain below $15B.
+
+---
+
+3. Defence Reduction
+
+Objective:
+Reduce defence spending by 2%.
+
+Constraints:
+Approval must remain above 45%.
+
+---
+
+4. Education Boost
+
+Objective:
+Increase education funding by 3%.
+
+Constraints:
+Total taxes cannot increase more than 1%.
+
+---
+
+5. Surplus Builder
+
+Objective:
+Create a $10B surplus.
+
+Constraints:
+Healthcare spending cannot decrease.
+
+---
+
+GAMEPLAY LOGIC
+
+When a challenge is active:
+
+Display the challenge objective clearly.
+
+Track progress automatically based on the simulator values.
+
+Example progress:
+
+Deficit: $8B → Target: $5B
+
+If the objective is achieved:
+
+Show a success notification.
+
+Example:
+
+Challenge Complete
+You successfully balanced the national budget.
+
+---
+
+VISUAL DESIGN
+
+Display challenges in card format.
+
+Each card should show:
+
+Challenge title
+Objective
+Constraints
+Start challenge button
+
+Highlight the active challenge.
+
+---
+
+PROGRESS TRACKING
+
+Add a progress panel showing:
+
+Current deficit
+Current approval rating
+Challenge target
+
+Update values in real time as sliders change.
+
+---
+
+COMPLETION FEEDBACK
+
+When a challenge is completed:
+
+Display a celebration animation.
+
+Example message:
+
+"You solved the Balanced Budget challenge."
+
+Add a button:
+
+Share My Result
+
+Generate a shareable card showing:
+
+Challenge name
+Budget outcome
+Approval rating
+
+---
+
+INTEGRATION
+
+The challenge system should interact with the existing simulator.
+
+Changing spending or revenue sliders should update challenge progress automatically.
+
+---
+
+GOAL
+
+Turn the simulator into an educational game that encourages users to experiment with policy decisions and understand the trade-offs between taxes, spending, deficits, and public approval.
