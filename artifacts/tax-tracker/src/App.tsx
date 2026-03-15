@@ -6,6 +6,7 @@ import { TaxProvider } from "@/hooks/use-tax-store";
 import { ExploreProvider } from "@/hooks/use-explore-tracker";
 import { Sidebar } from "@/components/Sidebar";
 import { TopHeader } from "@/components/TopHeader";
+import { BottomNav } from "@/components/BottomNav";
 import { useState } from "react";
 
 // Pages
@@ -58,9 +59,10 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 flex flex-col min-w-0 min-h-0">
         <TopHeader onMenuClick={() => setSidebarOpen(true)} />
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto pb-16 md:pb-0">
           {children}
         </main>
+        <BottomNav />
       </div>
     </div>
   );
