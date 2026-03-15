@@ -17,6 +17,7 @@ import {
   MapPin, X, Calculator, DollarSign, Building2, Filter,
   ChevronRight, Layers, TrendingUp, Zap,
 } from "lucide-react";
+import { InsightPanel } from "@/components/InsightPanel";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -327,6 +328,37 @@ export default function FollowTheMoney() {
           {visibleLocations.length} locations
         </span>
       </div>
+
+      {/* ── Insight Panel ───────────────────────────────────────────────── */}
+      <InsightPanel
+        className="mb-4"
+        insights={[
+          {
+            text: (
+              <>
+                Over <strong className="text-foreground">55%</strong> of mapped federal
+                spending flows through Sydney, Melbourne, and Canberra — where most government
+                agencies and healthcare hubs are headquartered.
+              </>
+            ),
+          },
+          {
+            text: (
+              <>
+                Your{" "}
+                <strong className="text-foreground">{formatCurrency(estimatedTax)}</strong> in
+                taxes{isDemoMode ? " (example figure)" : ""} contributes to{" "}
+                <strong className="text-foreground">{visibleLocations.length}</strong> spending
+                sites across{" "}
+                <strong className="text-foreground">
+                  {new Set(visibleLocations.map((l) => l.state)).size}
+                </strong>{" "}
+                states and territories currently visible on the map.
+              </>
+            ),
+          },
+        ]}
+      />
 
       {/* ── Map ─────────────────────────────────────────────────────────── */}
       <div

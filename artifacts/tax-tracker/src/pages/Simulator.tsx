@@ -12,6 +12,7 @@ import {
   ChevronLeft,
   Info,
 } from "lucide-react";
+import { InsightPanel } from "@/components/InsightPanel";
 import { useTaxStore } from "@/hooks/use-tax-store";
 import { useToast } from "@/hooks/use-toast";
 import { motion, AnimatePresence } from "framer-motion";
@@ -393,6 +394,54 @@ export default function Simulator() {
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* ── Insight Panel ── */}
+          <InsightPanel
+            insights={[
+              {
+                text: isValid ? (
+                  <>
+                    Your budget is <strong className="text-foreground">balanced</strong> — spending
+                    equals the $690B baseline. Submit to add your voice to the public sentiment data.
+                  </>
+                ) : isOver ? (
+                  <>
+                    Your budget creates a{" "}
+                    <strong className="text-foreground">
+                      ${deltaB.toFixed(1)}B deficit
+                    </strong>{" "}
+                    above the $690B baseline. Try reducing one or more categories to balance the
+                    books.
+                  </>
+                ) : (
+                  <>
+                    Your budget leaves{" "}
+                    <strong className="text-foreground">
+                      ${deltaB.toFixed(1)}B unallocated
+                    </strong>{" "}
+                    below the $690B baseline. Increase any category to use the remaining funds.
+                  </>
+                ),
+              },
+              {
+                text: (() => {
+                  const top = [...macroTotals].sort(
+                    (a, b) => b.percentage - a.percentage
+                  )[0];
+                  return (
+                    <>
+                      The largest category in your budget is{" "}
+                      <strong className="text-foreground">{top?.label}</strong> at{" "}
+                      <strong className="text-foreground">
+                        {((top?.percentage ?? 0) * 100).toFixed(1)}%
+                      </strong>{" "}
+                      of total outlays — ${((top?.percentage ?? 0) * TOTAL_BUDGET_BILLIONS_AUD).toFixed(1)}B.
+                    </>
+                  );
+                })(),
+              },
+            ]}
+          />
 
           <div className="flex flex-col sm:flex-row gap-3">
             <button

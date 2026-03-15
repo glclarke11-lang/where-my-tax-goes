@@ -1,5 +1,6 @@
 import { PageTransition } from "@/components/PageTransition";
 import { useGetPublicSentiment, useSubmitPreference } from "@workspace/api-client-react";
+import { InsightPanel } from "@/components/InsightPanel";
 import {
   Loader2, AlertTriangle, Users, TrendingDown, TrendingUp,
   CheckCircle2, Send, MapPin, Flame, BarChart3, Scale,
@@ -196,6 +197,53 @@ export default function Sentiment() {
           </div>
         </div>
       </div>
+
+      {/* ── Insight Panel ── */}
+      {data && topCategory && (
+        <InsightPanel
+          className="mb-8"
+          insights={[
+            {
+              text: (
+                <>
+                  <strong className="text-foreground">{topCategory.label}</strong> receives
+                  the highest public support at{" "}
+                  <strong className="text-foreground">
+                    {(topCategory.averageUserPreference * 100).toFixed(1)}%
+                  </strong>
+                  , compared to the government's{" "}
+                  <strong className="text-foreground">
+                    {(topCategory.governmentAllocation * 100).toFixed(1)}%
+                  </strong>{" "}
+                  allocation — the most popular area among survey respondents.
+                </>
+              ),
+            },
+            ...(trends.more[0]
+              ? [
+                  {
+                    text: (
+                      <>
+                        <strong className="text-foreground">
+                          {trends.more[0].label}
+                        </strong>{" "}
+                        has the largest funding gap — Australians want{" "}
+                        <strong className="text-foreground">
+                          {(trends.more[0].averageUserPreference * 100).toFixed(1)}%
+                        </strong>{" "}
+                        allocated but the government assigns only{" "}
+                        <strong className="text-foreground">
+                          {(trends.more[0].governmentAllocation * 100).toFixed(1)}%
+                        </strong>
+                        .
+                      </>
+                    ),
+                  },
+                ]
+              : []),
+          ]}
+        />
+      )}
 
       {/* ════════════════════════════════════════════════════════════════════
           SECTION 2 — PARTICIPATION PANEL

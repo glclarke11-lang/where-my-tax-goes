@@ -11,6 +11,7 @@ import {
   Loader2, AlertTriangle, Calendar, ChevronDown,
   MapPin, Gamepad2, TrendingUp, ArrowRight, Info,
 } from "lucide-react";
+import { InsightPanel } from "@/components/InsightPanel";
 import { Link } from "wouter";
 
 // ── Icons & helpers ───────────────────────────────────────────────────────────
@@ -84,6 +85,33 @@ export default function Breakdown() {
           </Link>
         )}
       </div>
+
+      {/* ── Insight Panel ───────────────────────────────────────────────── */}
+      <InsightPanel
+        className="mb-8"
+        insights={[
+          {
+            text: (
+              <>
+                <strong className="text-foreground">{HUNDRED[0].label}</strong> is Australia's
+                single largest spending category — accounting for{" "}
+                <strong className="text-foreground">{HUNDRED[0].dollars} cents</strong> in every
+                dollar of federal tax collected.
+              </>
+            ),
+          },
+          {
+            text: (
+              <>
+                <strong className="text-foreground">{HUNDRED[0].label}</strong> and{" "}
+                <strong className="text-foreground">{HUNDRED[1].label}</strong> together represent{" "}
+                <strong className="text-foreground">{HUNDRED[0].dollars + HUNDRED[1].dollars} cents</strong>{" "}
+                per dollar — over half the entire $690B federal budget.
+              </>
+            ),
+          },
+        ]}
+      />
 
       {/* ── Loading / error ───────────────────────────────────────────────── */}
       {isLoading && (

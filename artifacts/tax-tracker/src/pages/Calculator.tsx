@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { TaxDoughnut } from "@/components/TaxDoughnut";
 import { CategoryCard } from "@/components/CategoryCard";
+import { InsightPanel } from "@/components/InsightPanel";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 
@@ -55,6 +56,21 @@ function fmt(n: number) {
 }
 
 function fmtCurrency(n: number) { return `$${fmt(n)}`; }
+
+function getPercentileLabel(income: number): string {
+  if (income > 250_000) return "top 3%";
+  if (income > 180_000) return "top 5%";
+  if (income > 120_000) return "top 10%";
+  if (income > 100_000) return "top 16%";
+  if (income >  79_000) return "top 33%";
+  if (income >  60_000) return "top 45%";
+  if (income >  45_000) return "top 53%";
+  return "lower half";
+}
+
+function getMarginalRate(income: number): number {
+  return [...BRACKETS].reverse().find((b) => income > b.min)?.rate ?? 0;
+}
 
 // ── Component ────────────────────────────────────────────────────────────────
 
@@ -498,6 +514,38 @@ export default function Calculator() {
                   </Link>
                 </div>
               </div>
+
+              {/* ── Insight Panel ── */}
+              <InsightPanel
+                insights={[
+                  {
+                    text: (
+                      <>
+                        Your income of{" "}
+                        <strong className="text-foreground">{fmtCurrency(result.income)}</strong>{" "}
+                        places you in the{" "}
+                        <strong className="text-foreground">{getPercentileLabel(result.income)}</strong>{" "}
+                        of Australian income earners, based on ATO data.
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        Your effective rate of{" "}
+                        <strong className="text-foreground">
+                          {(result.effectiveRate * 100).toFixed(1)}%
+                        </strong>{" "}
+                        is well below your marginal rate of{" "}
+                        <strong className="text-foreground">
+                          {(getMarginalRate(result.income) * 100).toFixed(0)}%
+                        </strong>{" "}
+                        — only income above each threshold is taxed at the higher rate.
+                      </>
+                    ),
+                  },
+                ]}
+              />
 
               {/* ── Dashboard CTA banner ── */}
               <div className="rounded-2xl border border-primary/20 bg-primary/8 px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
