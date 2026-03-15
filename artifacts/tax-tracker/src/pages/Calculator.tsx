@@ -497,6 +497,21 @@ export default function Calculator() {
                 </div>
               </div>
 
+              {/* ── Dashboard CTA banner ── */}
+              <div className="rounded-2xl border border-primary/20 bg-primary/8 px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div>
+                  <p className="text-sm font-semibold text-foreground mb-0.5">Your personalised dashboard is ready</p>
+                  <p className="text-xs text-muted-foreground">See all your tax insights in one place — contribution breakdown, national budget, sentiment & more.</p>
+                </div>
+                <Link
+                  href="/dashboard"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground font-semibold text-sm rounded-xl hover:bg-primary/90 transition-all shrink-0 shadow-lg shadow-primary/20"
+                >
+                  View Dashboard
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+
               {/* ── Action Bar ── */}
               <div className="flex justify-end gap-3">
                 <Link

@@ -9,6 +9,7 @@ import { useState } from "react";
 
 // Pages
 import Home from "@/pages/Home";
+import Dashboard from "@/pages/Dashboard";
 import Calculator from "@/pages/Calculator";
 import Breakdown from "@/pages/Breakdown";
 import Simulator from "@/pages/Simulator";
@@ -33,6 +34,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/dashboard" component={Dashboard} />
       <Route path="/calculator" component={Calculator} />
       <Route path="/breakdown" component={Breakdown} />
       <Route path="/simulator" component={Simulator} />

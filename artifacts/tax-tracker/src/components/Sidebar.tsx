@@ -11,11 +11,13 @@ import {
   Home,
   X,
   Landmark,
+  LayoutDashboard,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_ITEMS = [
   { href: "/", label: "Home", icon: Home },
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/calculator", label: "Calculator", icon: Calculator },
   { href: "/breakdown", label: "Breakdown", icon: PieChart },
   { href: "/lifetime", label: "Lifetime Taxes", icon: TrendingUp },
