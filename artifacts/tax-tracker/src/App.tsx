@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { TaxProvider } from "@/hooks/use-tax-store";
+import { ExploreProvider } from "@/hooks/use-explore-tracker";
 import { Sidebar } from "@/components/Sidebar";
 import { TopHeader } from "@/components/TopHeader";
 import { useState } from "react";
@@ -71,11 +72,13 @@ function App() {
       <TaxProvider>
         <TooltipProvider>
           <div className="dark min-h-screen bg-background text-foreground font-sans selection:bg-primary/30">
-            <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-              <DashboardLayout>
-                <Router />
-              </DashboardLayout>
-            </WouterRouter>
+            <ExploreProvider>
+              <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+                <DashboardLayout>
+                  <Router />
+                </DashboardLayout>
+              </WouterRouter>
+            </ExploreProvider>
           </div>
           <Toaster />
         </TooltipProvider>

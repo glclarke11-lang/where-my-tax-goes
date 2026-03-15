@@ -3,7 +3,8 @@ import { useGetNationalBudget } from "@workspace/api-client-react";
 import { useTaxStore } from "@/hooks/use-tax-store";
 import { Loader2, AlertTriangle, ChevronDown, Search, X, Star, DollarSign, Calculator } from "lucide-react";
 import { TaxDoughnut } from "@/components/TaxDoughnut";
-import { useState, useMemo, useCallback, useRef, type JSX } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect, type JSX } from "react";
+import { useMarkExplored } from "@/hooks/use-explore-tracker";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 
@@ -61,6 +62,7 @@ function Highlight({ text, query }: { text: string; query: string }): JSX.Elemen
 
 // ── Main component ─────────────────────────────────────────────────────────────
 export default function Explorer() {
+  useMarkExplored("explorer");
   // ── ALL hooks first — never after any conditional return ──────────────────
   const { data, isLoading, isError } = useGetNationalBudget();
   const { result }                   = useTaxStore();

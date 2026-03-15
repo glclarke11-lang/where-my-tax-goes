@@ -2,7 +2,8 @@ import "leaflet/dist/leaflet.css";
 import { PageTransition } from "@/components/PageTransition";
 import { useTaxStore } from "@/hooks/use-tax-store";
 import { MapContainer, TileLayer, CircleMarker, Polyline, useMapEvents } from "react-leaflet";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { useMarkExplored } from "@/hooks/use-explore-tracker";
 import {
   MAP_LOCATIONS,
   CATEGORY_CONFIG,
@@ -216,6 +217,7 @@ function FlowCurrentsLayer({
 // ── Main page ────────────────────────────────────────────────────────────────
 
 export default function FollowTheMoney() {
+  useMarkExplored("money-map");
   const { result } = useTaxStore();
   const estimatedTax = result?.estimatedTax ?? 18_000;
   const isDemoMode = !result?.estimatedTax;

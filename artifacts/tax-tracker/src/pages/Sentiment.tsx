@@ -6,7 +6,8 @@ import {
   ChevronDown, ChevronUp, Lock, BookOpen, Download, FileSearch,
 } from "lucide-react";
 import { Link } from "wouter";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useMarkExplored } from "@/hooks/use-explore-tracker";
 import { motion, AnimatePresence } from "framer-motion";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -60,6 +61,7 @@ function SectionLabel({ number, title }: { number: number; title: string }) {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function Sentiment() {
+  useMarkExplored("sentiment");
   // ALL hooks before any early return ─────────────────────────────────────────
   const { data, isLoading, isError } = useGetPublicSentiment();
   const { mutate: submitPref, isPending: isSubmitting, isSuccess: submitted, reset: resetMutation } = useSubmitPreference();

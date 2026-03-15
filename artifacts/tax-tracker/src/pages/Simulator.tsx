@@ -1,6 +1,7 @@
 import { PageTransition } from "@/components/PageTransition";
 import { useGetBudgetData, useSubmitPreference } from "@workspace/api-client-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useMarkExplored } from "@/hooks/use-explore-tracker";
 import { TaxDoughnut } from "@/components/TaxDoughnut";
 import {
   Loader2,
@@ -23,6 +24,7 @@ import {
 } from "@/data/australiaBudget";
 
 export default function Simulator() {
+  useMarkExplored("simulator");
   const { data, isLoading, isError } = useGetBudgetData();
   const [budget, setBudget] = useState<MacroCategory[]>(AUSTRALIA_BUDGET);
   const [activeKey, setActiveKey] = useState<string | null>(null);

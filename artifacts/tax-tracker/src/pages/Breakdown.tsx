@@ -4,7 +4,8 @@ import { TaxDoughnut } from "@/components/TaxDoughnut";
 import { TaxFlowDiagram } from "@/components/TaxFlowDiagram";
 import { useTaxStore } from "@/hooks/use-tax-store";
 import { AUSTRALIA_BUDGET } from "@/data/australiaBudget";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useMarkExplored } from "@/hooks/use-explore-tracker";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Loader2, AlertTriangle, Calendar, ChevronDown,
@@ -50,6 +51,7 @@ const HUNDRED = AUSTRALIA_BUDGET.map((m) => ({
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function Breakdown() {
+  useMarkExplored("breakdown");
   const { data, isLoading, isError } = useGetBudgetData();
   const { result } = useTaxStore();
   const estimatedTax = result?.estimatedTax ?? 0;

@@ -1,7 +1,8 @@
 import { PageTransition } from "@/components/PageTransition";
 import { useTaxStore } from "@/hooks/use-tax-store";
 import { useCalculateTax } from "@workspace/api-client-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useMarkExplored } from "@/hooks/use-explore-tracker";
 import {
   DollarSign, ArrowRight, Loader2, Download, PieChart,
   TrendingUp, TrendingDown, Minus, MapPin, Home, Heart,
@@ -58,6 +59,7 @@ function fmtCurrency(n: number) { return `$${fmt(n)}`; }
 // ── Component ────────────────────────────────────────────────────────────────
 
 export default function Calculator() {
+  useMarkExplored("calculator");
   const { setInput, result, setResult } = useTaxStore();
   const [incomeStr, setIncomeStr]       = useState("");
   const [isAdvanced, setIsAdvanced]     = useState(false);
