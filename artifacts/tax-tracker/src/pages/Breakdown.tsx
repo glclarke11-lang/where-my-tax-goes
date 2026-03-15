@@ -390,7 +390,7 @@ export default function Breakdown() {
               </Link>
 
               <Link
-                href="/lifetime-taxes"
+                href="/lifetime"
                 className="group flex flex-col gap-3 p-5 rounded-2xl border border-white/8 hover:border-emerald-500/30 bg-white/2 hover:bg-emerald-500/6 transition-all"
               >
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/12 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
