@@ -1,0 +1,164 @@
+Improve the mobile responsiveness of the entire application so the interface works cleanly on phones.
+
+Use responsive design with Tailwind CSS breakpoints.
+
+The goal is to make the app easy to read and interact with on small screens.
+
+---
+
+GLOBAL MOBILE LAYOUT
+
+Use responsive breakpoints:
+
+sm: 640px
+md: 768px
+lg: 1024px
+
+On screens smaller than md:
+
+Stack all columns vertically.
+
+Example:
+
+Desktop:
+
+[ Chart ] [ Controls ]
+
+Mobile:
+
+Chart
+Controls
+
+---
+
+NAVIGATION
+
+Replace the top navigation bar with a collapsible mobile menu.
+
+Add a hamburger menu icon in the top right corner.
+
+When tapped, show a vertical menu containing:
+
+Dashboard
+Calculator
+Breakdown
+Explorer
+Money Map
+Run the Country
+Lifetime
+Sentiment
+
+The menu should slide down or open as an overlay.
+
+---
+
+CARDS AND PANELS
+
+Ensure all cards use full width on mobile.
+
+Example Tailwind:
+
+w-full
+max-w-screen-sm
+mx-auto
+
+Cards should stack vertically with spacing.
+
+Add spacing:
+
+space-y-6
+
+---
+
+CHARTS
+
+Ensure charts resize automatically.
+
+Charts should use:
+
+width: 100%
+height: auto
+
+For small screens reduce chart height slightly.
+
+Example:
+
+Desktop height: 400px
+Mobile height: 260px
+
+---
+
+MAP COMPONENT
+
+The map should fill screen width on mobile.
+
+Height should adjust to viewport.
+
+Example:
+
+height: 60vh
+
+Add margin above and below the map.
+
+---
+
+SLIDERS AND CONTROLS
+
+Increase touch targets.
+
+Buttons should be at least:
+
+48px height
+
+Add larger spacing between sliders so they are easy to adjust on phones.
+
+---
+
+TEXT SIZING
+
+Adjust typography for mobile.
+
+Headings:
+
+text-2xl or text-3xl
+
+Body text:
+
+text-base
+
+Avoid very small text.
+
+---
+
+TABLES
+
+If tables appear on mobile:
+
+Convert them to stacked cards.
+
+Example:
+
+Instead of rows, display:
+
+Category
+Government spending
+Your contribution
+
+Each as a card.
+
+---
+
+SPACING
+
+Add padding around page content.
+
+px-4
+py-6
+
+Avoid elements touching screen edges.
+
+---
+
+GOAL
+
+Ensure the entire platform feels clean, readable, and easy to interact with on mobile devices without horizontal scrolling or overlapping elements.

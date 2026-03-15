@@ -66,7 +66,7 @@ export default function Breakdown() {
     <PageTransition>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <div className="max-w-3xl mb-10">
-        <h1 className="text-4xl md:text-5xl font-display font-bold mb-3">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-display font-bold mb-3">
           Federal Budget Breakdown
         </h1>
         <p className="text-lg text-muted-foreground leading-relaxed">

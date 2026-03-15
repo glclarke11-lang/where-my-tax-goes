@@ -84,7 +84,7 @@ export default function Dashboard() {
       {/* ── Greeting header ── */}
       <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-display font-bold mb-1">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-1">
             {hasResult ? "Your Tax Dashboard" : "TaxScope Dashboard"}
           </h1>
           <p className="text-muted-foreground">

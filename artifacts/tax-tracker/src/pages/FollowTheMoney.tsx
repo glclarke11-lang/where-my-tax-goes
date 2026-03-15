@@ -268,7 +268,7 @@ export default function FollowTheMoney() {
       {/* ── Header ──────────────────────────────────────────────────────── */}
       <div className="mb-5 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-display font-bold mb-2">Follow the Money Map</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-2">Follow the Money Map</h1>
           <p className="text-muted-foreground">
             See where your taxes fund real infrastructure and services across Australia.{" "}
             {isDemoMode && (
@@ -330,8 +330,7 @@ export default function FollowTheMoney() {
 
       {/* ── Map ─────────────────────────────────────────────────────────── */}
       <div
-        className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
-        style={{ height: "calc(100vh - 20rem)", minHeight: "460px" }}
+        className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl h-[55vh] sm:h-[calc(100vh-20rem)] min-h-[300px] sm:min-h-[460px]"
       >
         <MapContainer
           center={[-25.2744, 133.7751]}

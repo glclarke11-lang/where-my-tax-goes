@@ -187,7 +187,7 @@ export default function Sentiment() {
               { label: "Confidence",    value: "±3.5%",                            sub: "margin of error" },
               { label: "Budget Year",   value: "FY2024–25",                        sub: "reference period" },
             ].map(({ label, value, sub }) => (
-              <div key={label} className="px-6 py-4">
+              <div key={label} className="px-3 py-3 sm:px-6 sm:py-4">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">{label}</p>
                 <p className="text-lg font-display font-bold tabular-nums">{value}</p>
                 <p className="text-[10px] text-muted-foreground/60">{sub}</p>

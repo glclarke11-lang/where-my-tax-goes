@@ -148,7 +148,7 @@ export default function Explorer() {
     <PageTransition>
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-4xl font-display font-bold mb-1">National Budget Explorer</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-1">National Budget Explorer</h1>
         <p className="text-muted-foreground">
           FY{data.fiscalYear} Federal Budget:{" "}
           <span className="font-semibold text-foreground">${data.totalBudgetBillions.toFixed(0)}B total outlay</span>

@@ -132,7 +132,7 @@ export default function Simulator() {
     <PageTransition>
       <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-display font-bold mb-2">Budget Simulator</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-2">Budget Simulator</h1>
           <p className="text-muted-foreground">
             Australian Federal Budget FY{FISCAL_YEAR} · AUD ${TOTAL_BUDGET_BILLIONS_AUD}B total outlays · Adjust micro spending, macro totals update live.
           </p>

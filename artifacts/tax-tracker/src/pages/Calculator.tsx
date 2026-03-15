@@ -294,7 +294,7 @@ export default function Calculator() {
 
           {/* Empty state */}
           {!result && !calculateMutation.isPending && (
-            <div className="h-full min-h-[400px] border-2 border-dashed border-border rounded-3xl flex flex-col items-center justify-center text-muted-foreground p-8 text-center bg-card/20">
+            <div className="h-full min-h-[280px] sm:min-h-[400px] border-2 border-dashed border-border rounded-3xl flex flex-col items-center justify-center text-muted-foreground p-8 text-center bg-card/20">
               <PieChart className="w-16 h-16 mb-4 text-border" />
               <h3 className="text-xl font-medium mb-2 text-foreground">Awaiting Input</h3>
               <p className="text-sm max-w-xs">Enter your income on the left to see your personalised tax breakdown and take-home pay.</p>
@@ -303,7 +303,7 @@ export default function Calculator() {
 
           {/* Loading */}
           {calculateMutation.isPending && (
-            <div className="h-full min-h-[400px] rounded-3xl flex flex-col items-center justify-center text-primary">
+            <div className="h-full min-h-[280px] sm:min-h-[400px] rounded-3xl flex flex-col items-center justify-center text-primary">
               <Loader2 className="w-12 h-12 animate-spin mb-4" />
               <p className="font-medium animate-pulse">Crunching the numbers…</p>
             </div>

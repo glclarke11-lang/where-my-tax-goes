@@ -79,6 +79,20 @@ const STEPS = [
   },
 ] as const;
 
+const ArrowConnector = () => (
+  <div className="hidden lg:flex items-center justify-center shrink-0 w-5 text-muted-foreground/25 px-0.5">
+    <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
+      <path
+        d="M5 12h14M13 6l6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </div>
+);
+
 export function HowItWorks() {
   return (
     <section>
@@ -87,78 +101,67 @@ export function HowItWorks() {
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-8"
+        className="mb-6"
       >
-        <h2 className="text-2xl font-display font-bold mb-2">How TaxScope Works</h2>
+        <h2 className="text-xl sm:text-2xl font-display font-bold mb-1.5">How TaxScope Works</h2>
         <p className="text-muted-foreground text-sm">
           Follow the journey of tax money from income to government spending.
         </p>
       </motion.div>
 
-      {/* Step flow */}
-      <div className="flex flex-col lg:flex-row lg:items-stretch gap-0">
+      {/* Step flow
+          Mobile / sm  : 2-column grid, no arrows
+          lg+          : single horizontal flex row with arrow connectors
+      */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:items-stretch gap-3 lg:gap-0">
         {STEPS.map((step, i) => {
           const Icon = step.icon;
           return (
-            <div key={step.n} className="flex flex-row lg:flex-col lg:flex-1 items-stretch">
-
-              {/* ── Card ── */}
+            <div key={step.n} className="contents lg:flex lg:flex-1 lg:items-stretch">
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07, duration: 0.35 }}
-                className="flex-1"
+                className="lg:flex-1"
               >
                 <Link
                   href={step.href}
-                  className={`group flex flex-col h-full rounded-2xl border ${step.border} p-4 transition-all duration-200 hover:border-white/15 hover:-translate-y-0.5 relative overflow-hidden`}
+                  className={`group flex flex-col h-full rounded-2xl border ${step.border} p-3 sm:p-4 transition-all duration-200 hover:border-white/15 hover:-translate-y-0.5 relative overflow-hidden`}
                   style={{ background: "rgba(255,255,255,0.025)" }}
                 >
-                  {/* Subtle radial glow top-left */}
-                  <div
-                    className={`absolute inset-0 pointer-events-none bg-gradient-to-br ${step.glow}`}
-                  />
+                  {/* Subtle radial glow */}
+                  <div className={`absolute inset-0 pointer-events-none bg-gradient-to-br ${step.glow}`} />
 
-                  {/* Step badge + icon */}
-                  <div className="relative flex items-start justify-between mb-3">
-                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-lg text-[11px] font-bold ${step.badge}`}>
+                  {/* Badge + icon */}
+                  <div className="relative flex items-start justify-between mb-2.5">
+                    <span className={`inline-flex items-center justify-center w-5 h-5 rounded-md text-[10px] font-bold ${step.badge}`}>
                       {step.n}
                     </span>
-                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center bg-white/5 ${step.color} transition-transform duration-200 group-hover:scale-110`}>
-                      <Icon className="w-4.5 h-4.5 w-[18px] h-[18px]" />
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center bg-white/5 ${step.color} transition-transform duration-200 group-hover:scale-110`}>
+                      <Icon className="w-4 h-4" />
                     </div>
                   </div>
 
                   {/* Text */}
                   <div className="relative flex-1 flex flex-col">
-                    <p className={`text-sm font-semibold mb-1.5 group-hover:${step.color} transition-colors`}>
+                    <p className="text-xs sm:text-sm font-semibold mb-1 leading-snug">
                       {step.title}
                     </p>
-                    <p className="text-xs text-muted-foreground leading-relaxed flex-1">
+                    <p className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed flex-1 hidden sm:block">
                       {step.desc}
                     </p>
 
-                    {/* Link button */}
-                    <div className={`inline-flex items-center gap-1 mt-3 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold ${step.btn} transition-colors self-start`}>
+                    {/* CTA */}
+                    <div className={`inline-flex items-center gap-1 mt-2.5 px-2 py-1.5 rounded-lg text-[10px] sm:text-[11px] font-semibold ${step.btn} transition-colors self-start`}>
                       Open
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                      <ArrowRight className="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </div>
                 </Link>
               </motion.div>
 
-              {/* ── Arrow connector (hidden on last item) ── */}
-              {i < STEPS.length - 1 && (
-                <div className="flex items-center justify-center shrink-0
-                                lg:rotate-0 rotate-90
-                                w-8 lg:w-auto lg:h-8 self-center
-                                text-muted-foreground/25">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 lg:w-5 lg:h-5 shrink-0">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              )}
-
+              {/* Arrow between cards — lg only */}
+              {i < STEPS.length - 1 && <ArrowConnector />}
             </div>
           );
         })}

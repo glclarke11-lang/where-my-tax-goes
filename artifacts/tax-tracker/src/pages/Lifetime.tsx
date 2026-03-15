@@ -236,7 +236,7 @@ export default function Lifetime() {
   return (
     <PageTransition>
       <div className="mb-8">
-        <h1 className="text-4xl font-display font-bold mb-2">Lifetime Tax Dashboard</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-2">Lifetime Tax Dashboard</h1>
         <p className="text-muted-foreground">Project your total career tax contribution and understand your lifetime impact on Australia.</p>
       </div>
 
@@ -251,7 +251,7 @@ export default function Lifetime() {
             </h2>
 
             {/* Age inputs */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="block text-xs font-medium text-muted-foreground mb-1.5">Current Age</label>
                 <input
@@ -397,7 +397,7 @@ export default function Lifetime() {
                   <div className="glass-panel p-6 rounded-2xl md:col-span-2 relative overflow-hidden group">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/8 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">Total Lifetime Tax</p>
-                    <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-primary">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-primary">
                       {fmt(data.totalLifetimeTax)}
                     </h2>
                     <p className="text-xs text-muted-foreground mt-2">

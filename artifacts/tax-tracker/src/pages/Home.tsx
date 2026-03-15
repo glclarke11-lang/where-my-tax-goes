@@ -61,7 +61,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-display font-extrabold leading-[1.05] tracking-tight mb-6"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)" }}
+            style={{ fontSize: "clamp(1.75rem, 7vw, 5rem)" }}
           >
             Understand Where Your
             <br />
