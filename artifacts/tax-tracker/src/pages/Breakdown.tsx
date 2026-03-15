@@ -2,6 +2,7 @@ import { PageTransition } from "@/components/PageTransition";
 import { useGetBudgetData } from "@workspace/api-client-react";
 import { TaxDoughnut } from "@/components/TaxDoughnut";
 import { CategoryCard } from "@/components/CategoryCard";
+import { TaxFlowDiagram } from "@/components/TaxFlowDiagram";
 import { Loader2, AlertTriangle, Calendar } from "lucide-react";
 
 export default function Breakdown() {
@@ -71,6 +72,11 @@ export default function Breakdown() {
                 <CategoryCard key={cat.key} category={cat} />
               ))}
             </div>
+          </div>
+
+          {/* Tax Flow Diagram */}
+          <div className="glass-panel rounded-3xl p-6 md:p-8">
+            <TaxFlowDiagram />
           </div>
         </div>
       )}
