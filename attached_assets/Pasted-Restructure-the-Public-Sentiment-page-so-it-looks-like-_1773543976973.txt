@@ -1,0 +1,163 @@
+Restructure the Public Sentiment page so it looks like a professional civic data dashboard.
+
+Do not remove existing functionality. Reorganize the layout to improve clarity, credibility, and usability.
+
+---
+
+PAGE STRUCTURE
+
+Divide the page into five sections:
+
+1. Survey Overview
+2. Participation Panel
+3. Spending Preference Results
+4. Government Comparison
+5. Submit Your Preference
+
+Each section should appear in this order from top to bottom.
+
+---
+
+SECTION 1 — SURVEY OVERVIEW
+
+At the top of the page display a header card explaining the purpose of the page.
+
+Example:
+
+Title:
+Public Budget Sentiment
+
+Description:
+See how Australians think tax money should be spent.
+
+Display metadata fields:
+
+Participants
+Last updated
+Confidence estimate (optional placeholder)
+
+Example:
+
+Participants: 3,482
+Last updated: Today
+Confidence estimate: ±3.5%
+
+This section should look like a statistics panel.
+
+---
+
+SECTION 2 — PARTICIPATION PANEL
+
+Display participation metrics using cards.
+
+Example cards:
+
+Total Responses
+Active Today
+Most Voted Category
+
+Example layout:
+
+Card grid with 3 cards.
+
+Example content:
+
+Total responses: 3,482
+Active today: 214
+Most supported category: Healthcare
+
+---
+
+SECTION 3 — SPENDING PREFERENCE RESULTS
+
+Display a horizontal bar chart showing public spending preferences.
+
+Example structure:
+
+Healthcare      █████████████ 42%
+Education       █████████ 28%
+Infrastructure  ██████ 18%
+Defence         ████ 12%
+
+Bars should animate on load.
+
+Each bar should show percentage and label clearly.
+
+---
+
+SECTION 4 — GOVERNMENT COMPARISON
+
+Add a comparison chart showing:
+
+Public preference vs government spending.
+
+Example:
+
+Healthcare
+
+Public: 42%
+Government: 16%
+
+Display this using side-by-side bars.
+
+Label this section:
+
+Public vs Government Budget Priorities
+
+---
+
+SECTION 5 — SUBMIT YOUR PREFERENCE
+
+At the bottom of the page allow users to submit their spending priorities.
+
+Question:
+
+Where should more tax money go?
+
+Options:
+
+Healthcare
+Education
+Infrastructure
+Defence
+Environment
+
+Allow users to select a category and submit their vote.
+
+After submission:
+
+Update sentiment bars dynamically.
+
+---
+
+VISUAL DESIGN
+
+Use consistent card styling:
+
+Rounded cards
+Subtle borders
+Soft shadows
+
+Charts should be centered and easy to read.
+
+Spacing between sections should be large enough to visually separate them.
+
+---
+
+FUTURE PLACEHOLDER
+
+At the bottom add a small section titled:
+
+Professional Insights (Coming Soon)
+
+Description:
+
+Advanced analytics and downloadable datasets will be available for researchers, journalists, and policy analysts.
+
+This prepares the page for future monetization without restricting the public experience.
+
+---
+
+GOAL
+
+Transform the sentiment page into a structured public opinion dashboard that looks credible, easy to read, and suitable for journalists or researchers citing the data.
