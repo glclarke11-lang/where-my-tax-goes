@@ -18,6 +18,7 @@ import {
 import { motion } from "framer-motion";
 import { useTaxStore } from "@/hooks/use-tax-store";
 import { PageTransition } from "@/components/PageTransition";
+import { HowItWorks } from "@/components/HowItWorks";
 
 const DEMO_TAX = 18_420;
 const DEMO_LIFETIME = 812_000;
@@ -158,6 +159,13 @@ export default function Home() {
       <div className="px-4 sm:px-6 lg:px-8 pb-8">
         <div className="max-w-7xl mx-auto border-t border-white/5" />
       </div>
+
+      {/* ── How TaxScope Works ───────────────────────────────────── */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-14">
+        <div className="max-w-7xl mx-auto">
+          <HowItWorks />
+        </div>
+      </section>
 
       {/* ── Feature Cards ────────────────────────────────────────── */}
       <section className="px-4 sm:px-6 lg:px-8 pb-16">

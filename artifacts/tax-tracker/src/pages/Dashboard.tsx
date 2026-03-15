@@ -1,4 +1,5 @@
 import { PageTransition } from "@/components/PageTransition";
+import { HowItWorks } from "@/components/HowItWorks";
 import { useTaxStore } from "@/hooks/use-tax-store";
 import { useGetPublicSentiment } from "@workspace/api-client-react";
 import { AUSTRALIA_BUDGET, TOTAL_BUDGET_BILLIONS_AUD } from "@/data/australiaBudget";
@@ -402,6 +403,11 @@ export default function Dashboard() {
             </motion.div>
           ))}
         </div>
+      </div>
+
+      {/* ── How TaxScope Works ── */}
+      <div className="mt-10 pt-8 border-t border-white/5">
+        <HowItWorks />
       </div>
 
     </PageTransition>
