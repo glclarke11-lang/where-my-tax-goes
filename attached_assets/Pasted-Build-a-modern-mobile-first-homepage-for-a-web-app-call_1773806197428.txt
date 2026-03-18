@@ -1,0 +1,112 @@
+Build a modern, mobile-first homepage for a web app called “Where My Tax Goes”.
+
+The goal of the homepage is to instantly hook users and drive them into the main interactive feature: “Run the Country”.
+
+STYLE:
+
+* Clean, minimal, and bold
+* Large text, high contrast, lots of spacing
+* Feels like a mix of Stripe + Apple + a simple game UI
+* Smooth animations (fade in, slight movement on scroll)
+* Mobile-first design (must look perfect on phone)
+
+HERO SECTION (full screen on load):
+
+* Big headline:
+  “See where your tax goes — then run the country yourself”
+
+* Subheading (short, punchy):
+  “Explore Australia’s budget in seconds. Adjust taxes, change spending, and build your version of the country.”
+
+* Primary button (large, centered, high contrast):
+  “Start Running Australia”
+
+* Secondary subtle link:
+  “See the real budget”
+
+* Background idea:
+  Soft animated gradient OR blurred budget chart bars moving slowly
+
+---
+
+SECTION 2: “WHERE YOUR TAX GOES”
+
+* Simple visual breakdown (bars or cards):
+  Healthcare, Defence, Education, Welfare, Infrastructure
+
+* Each shows:
+  % of budget
+  AND “$ per person per year”
+
+* Keep it very visual, minimal text
+
+---
+
+SECTION 3: “RUN THE COUNTRY” (main feature preview)
+
+* Title:
+  “What would YOU change?”
+
+* Show interactive-style UI preview:
+
+  * Sliders for:
+    Healthcare spending
+    Defence spending
+    Education
+    Mining tax
+    Corporate tax
+
+* As sliders move (or simulated animation):
+  Show:
+  “Budget Surplus: +$12B” (or deficit)
+
+* Add line:
+  “Balance the budget or build your ideal Australia”
+
+---
+
+SECTION 4: RESULT / IDENTITY PREVIEW
+
+* Show example result card:
+
+  “You are a: Public Services Builder
+  You increased mining taxes and boosted healthcare.
+  Your Australia runs a $8B surplus.”
+
+* Include mock “Share” button
+
+---
+
+SECTION 5: SOCIAL PROOF / ENGAGEMENT
+
+* “See how others would run Australia”
+* Show 2–3 example user budgets (cards)
+
+---
+
+SECTION 6: FINAL CTA
+
+* Big bold section:
+
+  “Ready to build your Australia?”
+
+* Button:
+  “Start Running Australia”
+
+---
+
+UX REQUIREMENTS:
+
+* Everything must be extremely simple and fast to understand
+* No long paragraphs
+* Use icons and visuals over text
+* Buttons must be large and thumb-friendly
+* Smooth scrolling between sections
+* Subtle hover/press animations
+
+---
+
+GOAL:
+The user should understand the app in under 3 seconds and feel curious enough to click immediately.
+
+The page should feel slightly playful, slightly serious, and highly shareable.
