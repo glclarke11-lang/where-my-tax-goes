@@ -2,7 +2,6 @@ import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { TaxProvider } from "@/hooks/use-tax-store";
 import { ExploreProvider } from "@/hooks/use-explore-tracker";
 import { Sidebar } from "@/components/Sidebar";
 import { TopHeader } from "@/components/TopHeader";
@@ -71,8 +70,6 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TaxProvider>
-        <TooltipProvider>
           <div className="dark min-h-screen bg-background text-foreground font-sans selection:bg-primary/30">
             <ExploreProvider>
               <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
