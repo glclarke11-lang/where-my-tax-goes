@@ -1,3 +1,4 @@
+import { TaxProvider } from "@/hooks/use-tax-store";
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -65,20 +66,13 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-          <div className="dark min-h-screen bg-background text-foreground font-sans selection:bg-primary/30">
-            <ExploreProvider>
-              <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-                <DashboardLayout>
-                  <Router />
-                </DashboardLayout>
-              </WouterRouter>
-            </ExploreProvider>
-          </div>
+      <TaxProvider>
+        <div className="dark min-h-screen bg-background text-foreground font-sans">
           <Toaster />
+        </div>
       </TaxProvider>
     </QueryClientProvider>
   );
