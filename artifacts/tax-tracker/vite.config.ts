@@ -25,5 +25,12 @@ export default defineConfig({
   build: {
     outDir: "dist",
     emptyOutDir: true,
-  sourcemap: false,},
-});
+    sourcemap: false,
+    rollupOptions: {
+      onwarn(warning, warn) {
+        // ignore sourcemap warnings completely
+        if (warning.message.includes("sourcemap")) return;
+        warn(warning);
+      },
+    },
+  },
