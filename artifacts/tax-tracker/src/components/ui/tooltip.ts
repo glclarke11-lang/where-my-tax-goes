@@ -5,5 +5,3 @@ export const Tooltip = ({ children }: any) => children;
 export const TooltipTrigger = ({ children }: any) => children;
 
 export const TooltipContent = ({ children }: any) => null;
-
-export default Tooltip;
